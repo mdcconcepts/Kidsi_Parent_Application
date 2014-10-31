@@ -1,0 +1,119 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/ic_bg_magenta"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+   tools:context="HomeActivity" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView"
+        android:fillViewport="false" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:gravity="center|center_vertical|center_horizontal"
+        android:layout_gravity="center|center_vertical|center_horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+
+
+        <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_logo" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:paddingTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="WELCOME TO KIDSI"
+        android:textColor="#FFFFFF"
+        />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/roundedcorner"
+        android:drawableLeft="@drawable/username"
+        android:ems="10"
+        android:singleLine="true"
+        android:nextFocusRight="@+id/password"
+        android:padding="5dp"
+        android:textColor="#FFFFFF"
+        android:drawablePadding="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/roundedcorner"
+        android:drawableLeft="@drawable/passward"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:singleLine="true"
+        android:padding="5dp"
+        android:textColor="#FFFFFF"
+        android:drawablePadding="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+
+    </EditText>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" >
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="20dp"
+            android:layout_weight="0.5"
+            android:text="Create new Account"
+            android:textColor="#FFFFFF"
+            android:layout_marginLeft="10dp" />
+
+
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="20dp"
+            android:text="Forgot Password?"
+            android:textColor="#FFFFFF"
+            android:layout_marginRight="10dp" />
+    </LinearLayout>
+   <!--<ImageView
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_login" />-->
+        <Button
+            android:layout_width="135dp"
+            android:layout_height="50dp"
+            android:text="Login"
+            android:background="@drawable/button_selector"
+            android:id="@+id/ButtonController_Login"
+            android:textColor="#ED2F59"
+            android:textSize="16sp" />
+    </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="list_item_title">#fff</color>
+    <color name="list_background">#ffffff</color>
+    <color name="list_background_pressed">#c5e0ff</color>
+    <color name="list_background_activated">#00ebf4ff</color>
+    <color name="list_divider">#00ffffff</color>
+    <color name="counter_text_bg">#626262</color>
+    <color name="counter_text_color">#c5c4c4</color>
+    <color name="actionbar_color">#181818</color>
+    <color
+        name="BrightBlue"
+        >#4099FF</color>
+    <color
+        name="White"
+        >#4099FF</color>
+</resources>
