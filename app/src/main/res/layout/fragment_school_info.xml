@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_bg_blue_new"
+    android:background="@drawable/ic_bg_main"
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="fill_parent"
@@ -37,7 +37,7 @@
             android:text="SCHOOL INFO: \n\n Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. "
             android:id="@+id/TextViewController_SchoolInfo"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="30dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
             android:padding="5dp"

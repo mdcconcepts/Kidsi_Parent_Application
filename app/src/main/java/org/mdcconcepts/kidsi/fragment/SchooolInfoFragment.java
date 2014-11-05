@@ -23,7 +23,7 @@ public class SchooolInfoFragment extends Fragment {
 
         try {
              rootView = inflater.inflate(R.layout.fragment_school_info, container, false);
-            TextViewController_SchoolInfo=(TextView)rootView.findViewById(R.id.TextViewController_SchoolInfo);
+             TextViewController_SchoolInfo=(TextView)rootView.findViewById(R.id.TextViewController_SchoolInfo);
             font=Typeface.createFromAsset(rootView.getContext().getAssets(), Util.FontName);
             TextViewController_SchoolInfo.setTypeface(font);
 

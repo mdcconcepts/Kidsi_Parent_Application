@@ -17,10 +17,11 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import org.mdcconcepts.kidsi.fragment.ParentProfileFragment;
-import org.mdcconcepts.kidsi.fragment.SchooolInfoFragment;
+import org.mdcconcepts.kidsi.customitems.ExitDialogBox;
 import org.mdcconcepts.kidsi.fragment.HomeFragment;
 import org.mdcconcepts.kidsi.fragment.PagesFragment;
+import org.mdcconcepts.kidsi.fragment.ParentProfileFragment;
+import org.mdcconcepts.kidsi.fragment.SchooolInfoFragment;
 import org.mdcconcepts.kidsi.fragment.TeacherInfoFragment;
 import org.mdcconcepts.kidsi.navigationdrawer.NavDrawerItem;
 import org.mdcconcepts.kidsi.navigationdrawer.NavDrawerListAdapter;
@@ -107,10 +108,11 @@ public class MainActivity extends Activity {
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
 
-            ImageView view = (ImageView) findViewById(android.R.id.home);
-            view.setPadding(10, 0, 0, 10);
+
+
+
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
-                R.drawable.ic_drawer, //nav menu toggle icon
+                R.drawable.ic_menu_drawer, //nav menu toggle icon
                 R.string.app_name, // nav drawer open - description for accessibility
                 R.string.app_name // nav drawer close - description for accessibility
         ) {
@@ -121,7 +123,7 @@ public class MainActivity extends Activity {
             }
 
             public void onDrawerOpened(View drawerView) {
-                getActionBar().setTitle(mDrawerTitle);
+//                getActionBar().setTitle(mDrawerTitle);
                 // calling onPrepareOptionsMenu() to hide action bar icons
                 invalidateOptionsMenu();
             }
@@ -137,6 +139,16 @@ public class MainActivity extends Activity {
         {
             e.printStackTrace();
         }
+
+        final ImageView view = (ImageView) findViewById(android.R.id.home);
+        view.setPadding(20,0,0,10);
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Toast.makeText(MainActivity.this,String.valueOf(view.getPaddingLeft()),Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     /**
@@ -240,7 +252,7 @@ public class MainActivity extends Activity {
     @Override
     public void setTitle(CharSequence title) {
         mTitle = title;
-        getActionBar().setTitle(mTitle);
+//        getActionBar().setTitle(mTitle);
     }
 
     /**
@@ -262,4 +274,10 @@ public class MainActivity extends Activity {
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+        ExitDialogBox dialogBox =new ExitDialogBox(MainActivity.this);
+        dialogBox.show();
+    }
 }

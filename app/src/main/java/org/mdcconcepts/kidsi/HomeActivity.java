@@ -2,11 +2,8 @@ package org.mdcconcepts.kidsi;
 
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,17 +11,25 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.TextView;
 
 import org.mdcconcepts.kidsi.Util.AppSharedPreferences;
 import org.mdcconcepts.kidsi.Util.Util;
+import org.mdcconcepts.kidsi.customitems.ConnectionDetector;
+import org.mdcconcepts.kidsi.customitems.InternetConnectionDialog;
 
 public class HomeActivity extends Activity {
 //    ImageView imageView1 ;
     EditText EditText_Username,EditText_Password;
     Button ButtonController_Login;
     Typeface font;
+    TextView TextViewController_Title;
 
+    ConnectionDetector connectionDetector;
+
+    Boolean isConnected;
+
+    TextView TextViewController_ForgotPassword;
     String err=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,16 +45,22 @@ public class HomeActivity extends Activity {
 
             EditText_Username.setText(AppSharedPreferences.getUname(HomeActivity.this));
             EditText_Password.setText(AppSharedPreferences.getPassword(HomeActivity.this));
+            TextViewController_Title=(TextView)findViewById(R.id.TextViewController_Title);
+            TextViewController_ForgotPassword=(TextView)findViewById(R.id.TextViewController_ForgotPassword);
+
 //            imageView1 = (ImageView) findViewById(R.id.login);
 
             font=Typeface.createFromAsset(getAssets(),Util.FontName);
 
             ButtonController_Login =(Button)findViewById(R.id.ButtonController_Login);
+            connectionDetector=new ConnectionDetector(HomeActivity.this);
+
 
             ButtonController_Login.setTypeface(font);
             EditText_Username.setTypeface(font);
             EditText_Password.setTypeface(font);
-
+            TextViewController_Title.setTypeface(font);
+            TextViewController_ForgotPassword.setTypeface(font);
             ButtonController_Login.setOnClickListener(new OnClickListener() {
 
                 @Override
@@ -60,7 +71,7 @@ public class HomeActivity extends Activity {
                     try {
 
                         boolean connected = false;
-                        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+//                        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                 /* if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
                         connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
                     //we are connected to a network
@@ -74,25 +85,33 @@ public class HomeActivity extends Activity {
 
                 else
                 {*/
-
-                        if (EditText_Username.getText().toString().trim().isEmpty()) {
-                            EditText_Username.setError("Please enter username");
+                        isConnected=connectionDetector.isConnectingToInternet();
+                        if(isConnected) {
+                            if (EditText_Username.getText().toString().trim().isEmpty()) {
+                                EditText_Username.setError("Please enter username");
 //                            err = "Please enter username";
 //                            imageView1.setAlpha(255);
 //                            Util.display(getApplicationContext(), null, err, 1, true);
 
-                        } else if (EditText_Password.getText().toString().trim().isEmpty()) {
-                            EditText_Password.setError("Please enter password");
+                            } else if (EditText_Password.getText().toString().trim().isEmpty()) {
+                                EditText_Password.setError("Please enter password");
 //                            err = "Please enter password";
 //                            imageView1.setAlpha(255);
 //                            Util.display(getApplicationContext(), null, err, 1, true);
 
-                        } else {
-                            Intent i = new Intent(getApplicationContext(), LoadingActivity.class);
-                            i.putExtra("mainusername", EditText_Username.getText().toString().trim());
-                            i.putExtra("password", EditText_Password.getText().toString().trim());
-                            startActivity(i);
+                            } else {
+                                Intent i = new Intent(getApplicationContext(), LoadingActivity.class);
+                                i.putExtra("mainusername", EditText_Username.getText().toString().trim());
+                                i.putExtra("password", EditText_Password.getText().toString().trim());
+                                startActivity(i);
 //                            HomeActivity.this.finish();
+                            }
+                        }
+                        else
+                        {
+                            InternetConnectionDialog internetConnectionDialog=new InternetConnectionDialog(HomeActivity.this);
+                            internetConnectionDialog.show();
+
                         }
                     } catch (Exception e) {
                         e.printStackTrace();

@@ -45,6 +45,9 @@ public class LivecamActivity extends FragmentActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        getActionBar().setHomeButtonEnabled(true);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -61,6 +64,19 @@ public class LivecamActivity extends FragmentActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_settings) {
+            return true;
+        }
+        if (id ==android.R.id.home) {
+            // This ID represents the Home or Up button. In the case of this
+            // activity, the Up button is shown. Use NavUtils to allow users
+            // to navigate up one level in the application structure. For
+            // more details, see the Navigation pattern on Android Design:
+            //
+            // http://developer.android.com/design/patterns/navigation.html#up-vs-back
+            //
+            // NavUtils.navigateUpFromSameTask(this);
+
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);

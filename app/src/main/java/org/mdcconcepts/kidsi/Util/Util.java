@@ -14,7 +14,7 @@ import android.widget.Toast;
 public class Util {
     public static String gcmxmppid=null;
     // Google Project Number.
-    public static final String FontName = "Futura (Light).ttf";
+    public static final String FontName = "tt0142m_.ttf";
 
     public static final String GOOGLE_PROJECT_ID = "424039497097";
     public static String USER_NAME;
