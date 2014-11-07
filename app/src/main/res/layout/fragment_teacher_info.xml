@@ -70,93 +70,149 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/frameLayout"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="5dp"
-                android:background="@drawable/drop_shadow"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="15dp">
-
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/scrollView2" >
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingBottom="10dp">
-
-                    <TextView
-                        android:id="@+id/TextViewController_PhoneTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:text="Phone"
-                        android:textAppearance="?android:attr/textAppearanceLarge" />
-
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
 
                     <LinearLayout
+                        android:id="@+id/frameLayout"
                         android:layout_width="fill_parent"
-                        android:layout_height="1dp"
-                        android:background="#cccccc"
-                        android:orientation="vertical">
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/drop_shadow"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="15dp">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:paddingBottom="10dp">
+
+                            <TextView
+                                android:id="@+id/TextViewController_PhoneTitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:text="Phone"
+                                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="1dp"
+                                android:background="#cccccc"
+                                android:orientation="vertical">
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:clickable="true"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/TextViewController_PhoneNumber"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="left"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/textview_call_selector"
+                                    android:clickable="true"
+
+                                    android:paddingTop="10dp"
+                                    android:text="Call Mobile \n+91 88 88 398350"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"
+                                    android:textColor="#333"
+                                    android:textSize="16dp" />
+
+                                <ImageView
+                                    android:id="@+id/ImageView_Call"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="fill_parent"
+                                    android:layout_gravity="center_horizontal|right"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:src="@drawable/phone" />
+
+                                <LinearLayout
+                                    android:layout_width="2dp"
+                                    android:layout_height="fill_parent"
+                                    android:layout_marginBottom="5dp"
+                                    android:layout_marginTop="5dp"
+                                    android:background="#cccccc"
+                                    android:orientation="vertical"></LinearLayout>
+
+                                <ImageView
+                                    android:id="@+id/ImageViewController_CreateMsg"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="fill_parent"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:src="@drawable/ic_create_message" />
+
+                            </LinearLayout>
+                        </LinearLayout>
 
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/frameLayout1"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="10dp"
-                        android:clickable="true"
-                        android:orientation="horizontal">
+                        android:layout_margin="5dp"
+                        android:background="@drawable/drop_shadow"
+                        android:orientation="vertical"
+                       android:padding="15dp">
 
                         <TextView
-                            android:id="@+id/TextViewController_PhoneNumber"
+                            android:id="@+id/TextViewController_TeacherInfo_Title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="left"
-                            android:layout_weight="1"
-                            android:background="@drawable/textview_call_selector"
-                            android:clickable="true"
+                            android:text="TEACHER INFO:"
+                            android:textSize="18sp" />
 
-                            android:paddingTop="10dp"
-                            android:text="Call Mobile \n+91 88 88 398350"
+                        <TextView
+                            android:id="@+id/TextViewController_TeacherInfo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+
+                            android:layout_marginTop="10dp"
+                            android:gravity="center_vertical"
+                            android:padding="5dp"
+                            android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.  "
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textColor="#333"
-                            android:textSize="16dp" />
+                            android:textColor="#000000"
+                            android:textSize="16sp" />
 
-                        <ImageView
-                            android:id="@+id/ImageView_Call"
+                        <RatingBar
+                            android:id="@+id/ratingBar"
                             android:layout_width="wrap_content"
-                            android:layout_height="fill_parent"
-                            android:layout_gravity="center_horizontal|right"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:src="@drawable/phone" />
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:isIndicator="false"
+                            android:progressDrawable="@drawable/apptheme_ratingbar_full_holo_light" />
 
-                        <LinearLayout
-                            android:layout_width="2dp"
-                            android:layout_height="fill_parent"
-                            android:layout_marginBottom="5dp"
-                            android:layout_marginTop="5dp"
-                            android:background="#cccccc"
-                            android:orientation="vertical"></LinearLayout>
-
-                        <ImageView
-                            android:id="@+id/ImageViewController_CreateMsg"
-                            android:layout_width="wrap_content"
-                            android:layout_height="fill_parent"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:src="@drawable/ic_create_message" />
 
                     </LinearLayout>
                 </LinearLayout>
+            </ScrollView>
 
-            </LinearLayout>
             <!--  <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -210,49 +266,6 @@
         </FrameLayout>-->
 
 
-            <LinearLayout
-                android:id="@+id/frameLayout1"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="5dp"
-                android:background="@drawable/drop_shadow"
-                android:orientation="vertical"
-                android:padding="15dp">
-
-                <TextView
-                    android:id="@+id/TextViewController_TeacherInfo_Title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TEACHER INFO:"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/TextViewController_TeacherInfo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-
-                    android:layout_marginTop="10dp"
-                    android:gravity="center_vertical"
-                    android:padding="5dp"
-                    android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.  "
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#000000"
-                    android:textSize="16sp" />
-
-
-                <RatingBar
-                    android:id="@+id/ratingBar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:progressDrawable="@drawable/ratting_bar_custom"
-                    android:rating="3" />
-
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

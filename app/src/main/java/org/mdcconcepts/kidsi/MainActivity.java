@@ -3,7 +3,6 @@ package org.mdcconcepts.kidsi;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -42,7 +41,7 @@ public class MainActivity extends Activity {
     // slide menu items
     private String[] navMenuTitles;
     private TypedArray navMenuIcons;
-    String uname;
+//    String uname;
     private ArrayList<NavDrawerItem> navDrawerItems;
     private NavDrawerListAdapter adapter;
 
@@ -55,9 +54,9 @@ public class MainActivity extends Activity {
         try {
 
 
-        Intent intename = getIntent();
-        uname = intename.getStringExtra("mainusername");
-        Log.d("IN MAIN ACTIVITY -- ", uname);
+//        Intent intename = getIntent();
+//        uname = intename.getStringExtra("mainusername");
+//        Log.d("IN MAIN ACTIVITY -- ", uname);
         mTitle = mDrawerTitle = getTitle();
         //Camera Activity
 
