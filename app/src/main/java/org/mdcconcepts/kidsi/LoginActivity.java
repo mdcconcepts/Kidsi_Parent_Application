@@ -36,7 +36,7 @@ import org.mdcconcepts.kidsi.customitems.JSONParser;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeActivity extends Activity {
+public class LoginActivity extends Activity {
     //    ImageView imageView1 ;
     EditText EditText_Username, EditText_Password;
     Button ButtonController_Login;
@@ -65,8 +65,8 @@ public class HomeActivity extends Activity {
             EditText_Username = (EditText) findViewById(R.id.username);
             EditText_Password = (EditText) findViewById(R.id.password);
 
-            EditText_Username.setText(AppSharedPreferences.getUname(HomeActivity.this));
-            EditText_Password.setText(AppSharedPreferences.getPassword(HomeActivity.this));
+            EditText_Username.setText(AppSharedPreferences.getUname(LoginActivity.this));
+            EditText_Password.setText(AppSharedPreferences.getPassword(LoginActivity.this));
             TextViewController_Title = (TextView) findViewById(R.id.TextViewController_Title);
             TextViewController_ForgotPassword = (TextView) findViewById(R.id.TextViewController_ForgotPassword);
             Incomming_Bus = (ImageView) findViewById(R.id.Incomming_Bus);
@@ -74,7 +74,7 @@ public class HomeActivity extends Activity {
             font = Typeface.createFromAsset(getAssets(), Util.FontName);
 
             ButtonController_Login = (Button) findViewById(R.id.ButtonController_Login);
-            connectionDetector = new ConnectionDetector(HomeActivity.this);
+            connectionDetector = new ConnectionDetector(LoginActivity.this);
 
 
             ButtonController_Login.setTypeface(font);
@@ -104,7 +104,7 @@ public class HomeActivity extends Activity {
                                 new AttemptLogin().execute();
                             }
                         } else {
-                            InternetConnectionDialog internetConnectionDialog = new InternetConnectionDialog(HomeActivity.this);
+                            InternetConnectionDialog internetConnectionDialog = new InternetConnectionDialog(LoginActivity.this);
                             internetConnectionDialog.show();
 
                         }
@@ -182,7 +182,7 @@ public class HomeActivity extends Activity {
         protected void onPreExecute() {
             // TODO Auto-generated method stub
             // super.onPreExecute();
-            pDialog = new ProgressDialog(HomeActivity.this);
+            pDialog = new ProgressDialog(LoginActivity.this);
             pDialog.setMessage("Attempting Login ... ");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(false);
@@ -340,7 +340,7 @@ public class HomeActivity extends Activity {
 //
 //                } else if (userexist == 0) {
 ////                    errMsg = "Error:Wrong Username";
-////                    Intent mainIntent = new Intent(LoadingActivity.this, HomeActivity.class);
+////                    Intent mainIntent = new Intent(LoadingActivity.this, LoginActivity.class);
 ////                    mainIntent.putExtra("error", errMsg);
 ////                    LoadingActivity.this.startActivity(mainIntent);
 ////                    LoadingActivity.this.finish();
@@ -348,7 +348,7 @@ public class HomeActivity extends Activity {
 //
 //                } else {
 ////                    errMsg = "Error:Wrong Password";
-////                    Intent mainIntent = new Intent(LoadingActivity.this, HomeActivity.class);
+////                    Intent mainIntent = new Intent(LoadingActivity.this, LoginActivity.class);
 ////                    mainIntent.putExtra("error", errMsg);
 ////                    LoadingActivity.this.startActivity(mainIntent);
 ////                    LoadingActivity.this.finish();
