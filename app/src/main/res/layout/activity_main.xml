@@ -37,9 +37,8 @@
 
     <!-- Listview to display slider menu -->
     <ListView
-        android:background="@drawable/bg"
-
-        android:id="@+id/list_slidermenu"
+        android:background="#254189"
+       android:id="@+id/list_slidermenu"
         android:layout_width="170dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"

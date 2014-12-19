@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="list_item_title">#fff</color>
+    <color name="kidsi_theme_color">#ED2F59</color>
     <color name="list_background">#ffffff</color>
     <color name="list_background_pressed">#c5e0ff</color>
     <color name="list_background_activated">#00ebf4ff</color>
@@ -9,10 +10,7 @@
     <color name="counter_text_color">#c5c4c4</color>
     <color name="actionbar_color">#181818</color>
     <color name="orange_color">#F58634</color>
-    <color
-        name="BrightBlue"
-        >#4099FF</color>
-    <color
-        name="White"
-        >#4099FF</color>
+    <color name="BrightBlue">#4099FF</color>
+    <color name="White">#4099FF</color>
+    <color name="drawer_color">#254189</color>
 </resources>

@@ -2,24 +2,27 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.mdcconcepts.kidsi">
 
+    <!--
+ <permission
+        android:name="org.mdcconcepts.kidsi.chat.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+    -->
+    <uses-sdk
+        android:minSdkVersion="15"
+        android:targetSdkVersion="18" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="org.mdcconcepts.kidsi.chat.permission.C2D_MESSAGE" />
+    <!-- <uses-permission android:name="org.mdcconcepts.kidsi.chat.permission.C2D_MESSAGE" /> -->
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
-    <permission
-        android:name="org.mdcconcepts.kidsi.chat.permission.C2D_MESSAGE"
-        android:protectionLevel="signature" />
-
-    <uses-sdk
-        android:minSdkVersion="15"
-        android:targetSdkVersion="18" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:name=".chat.GlobalContext"
@@ -37,22 +40,18 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
             android:windowSoftInputMode="stateHidden">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".LoadingActivity"
             android:label="@string/title_activity_loading"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"></activity>
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"></activity>
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".chat.RegisterActivity"
             android:label="@string/title_activity_register"
@@ -69,15 +68,15 @@
         <activity
             android:name=".chat.UserListActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".chat.ChatActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".livewebcam.LivecamActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
 
         <receiver
             android:name=".chat.GcmBroadcastReceiver"
@@ -95,19 +94,44 @@
         <activity
             android:name=".chat.ChatRoomActivity"
             android:label="Mrs.Poonam"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".chat.FinalChatActivity"
             android:label="Chat Room"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".health.Health"
+            android:name=".health.HealthChartActivity"
             android:label="@string/title_activity_health"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".performance.Perfomance"
+            android:name=".performance.PerfomanceChartActivity"
             android:label="@string/title_activity_perfamance"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AboutAppActivity"
+            android:label="@string/title_activity_about_app"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"></activity>
+        <activity
+            android:name=".PrivacyPolicyActivity"
+            android:label="@string/title_activity_privacy_policy"></activity>
+        <activity
+            android:name=".kids.KidsProfileActivity"
+            android:label="@string/title_activity_kids_profile"></activity>
+        <activity
+            android:name=".NotificationActivity"
+            android:label="@string/title_activity_notification"></activity>
+        <activity
+            android:name=".SplashScreenActivity"
+            android:label="@string/title_activity_home"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+            android:windowSoftInputMode="stateHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

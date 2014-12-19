@@ -1,147 +1,231 @@
 package org.mdcconcepts.kidsi.fragment;
 
+import android.app.Dialog;
 import android.app.Fragment;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.util.Linkify;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.mdcconcepts.kidsi.R;
+import org.mdcconcepts.kidsi.Util.AppSharedPreferences;
 import org.mdcconcepts.kidsi.Util.Util;
 import org.mdcconcepts.kidsi.chat.ChatRoomActivity;
+import org.mdcconcepts.kidsi.customitems.CompleteAsyncTask;
+import org.mdcconcepts.kidsi.customitems.CustomTextView;
+import org.mdcconcepts.kidsi.customitems.RateTeacherDialog;
+import org.mdcconcepts.kidsi.customitems.UniversalAsynckTask;
 
 
-public class TeacherInfoFragment extends Fragment {
+public class TeacherInfoFragment extends Fragment implements View.OnClickListener, CompleteAsyncTask {
 
     public TeacherInfoFragment() {
     }
 
     static View rootView = null;
-    Typeface font;
 
-    TextView TextViewController_TeacherName;
+    private CustomTextView tvEmailAddrs;
+    private CustomTextView tvClass;
+    private CustomTextView tvEmergancyNumber;
+    private CustomTextView tvMobileNumber;
+    private CustomTextView tvTeacherName;
+    private CustomTextView tvTeacherStatus;
+    private CustomTextView tvTeacherTotalCount;
 
-    TextView TextViewController_TeacherInfo;
 
-    TextView TextViewController_PhoneTitle;
 
-    TextView TextViewController_PhoneNumber;
+    private ImageView imgCall;
+    private ImageView imgEmergancyCall;
 
-    TextView TextViewController_TeacherInfo_Title;
+    private RatingBar ratingBar_teacher_rating;
 
-    ImageView ImageView_Call;
+    private UniversalAsynckTask universalAsynckTask;
 
-    ImageView ImageViewController_CreateMsg;
+    private Boolean success;
+    private String message;
+    private JSONObject temp;
+    private AppSharedPreferences mySharedPreferences;
+
+    private Button btnRate;
+    private RateTeacherDialog rateTeacherDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         try {
-            rootView = inflater.inflate(R.layout.fragment_teacher_info, container, false);
 
-            font = Typeface.createFromAsset(getActivity().getAssets(), Util.FontName);
+            rootView = inflater.inflate(R.layout.teacher_profile, container, false);
+            initailizeViews();
+            initParameters();
+            setParameters();
 
-            TextViewController_TeacherName = (TextView) rootView.findViewById(R.id.TextViewController_TeacherName);
+            if (mySharedPreferences.getTeacherInfoStatus()) {
 
-            TextViewController_TeacherInfo = (TextView) rootView.findViewById(R.id.TextViewController_TeacherInfo);
-
-            TextViewController_PhoneTitle= (TextView) rootView.findViewById(R.id.TextViewController_PhoneTitle);
-
-            TextViewController_PhoneNumber= (TextView) rootView.findViewById(R.id.TextViewController_PhoneNumber);
-
-            TextViewController_TeacherInfo_Title = (TextView) rootView.findViewById(R.id.TextViewController_TeacherInfo_Title);
-
-
-            TextViewController_TeacherName.setTypeface(font);
-
-            TextViewController_TeacherInfo.setTypeface(font);
-
-            TextViewController_PhoneTitle.setTypeface(font);
-
-            TextViewController_PhoneNumber.setTypeface(font);
-
-            TextViewController_TeacherInfo_Title.setTypeface(font);
-
-
-            ImageView_Call = (ImageView) rootView.findViewById(R.id.ImageView_Call);
-
-            ImageViewController_CreateMsg=(ImageView)rootView.findViewById(R.id.ImageViewController_CreateMsg);
-
-            ImageViewController_CreateMsg.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i= new Intent(getActivity(), ChatRoomActivity.class);
-                    startActivity(i);
-//                    getActivity().finish();
-                }
-            });
-
-            ImageView_Call.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View arg0) {
-
-//                    Toast.makeText(getActivity(),
-//                            "ImageButton (selector) is clicked!",
-//                            Toast.LENGTH_SHORT).show();
-                    try {
-//                        animate(iconView, chatImgage, imageViewButtonArray, imagesToShow, 3, false);
-
-//                        Intent intent = new Intent(getActivity(), RegisterActivity.class);
-                        callNumber();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                }
-
-            });
-
-            TextViewController_PhoneNumber.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View arg0) {
-
-//                    Toast.makeText(getActivity(),
-//                            "ImageButton (selector) is clicked!",
-//                            Toast.LENGTH_SHORT).show();
-                    try {
-//                        animate(iconView, chatImgage, imageViewButtonArray, imagesToShow, 3, false);
-
-//                        Intent intent = new Intent(getActivity(), RegisterActivity.class);
-                        callNumber();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                }
-
-            });
-
+            } else {
+                String[] requestParameters = new String[2];
+                requestParameters[0] = Util.TEACHER_INFO_PROFILE;
+                requestParameters[1] = getRequestParameters().toString();
+                universalAsynckTask = new UniversalAsynckTask(TeacherInfoFragment.this, "Loading", getActivity(),1);
+                universalAsynckTask.execute(requestParameters);
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return rootView;
     }
 
-    public void callNumber() {
+    private void initParameters() {
+        rateTeacherDialog = new RateTeacherDialog(getActivity());
+        mySharedPreferences = new AppSharedPreferences(getActivity());
+        btnRate.setOnClickListener(this);
+    }
+
+    public void setParameters() {
+
+
+        tvEmailAddrs.setText(mySharedPreferences.getTeacherEmailAddress());
+        Linkify.addLinks(tvEmailAddrs, Linkify.EMAIL_ADDRESSES);
+        tvEmailAddrs.setLinkTextColor(Color.WHITE);
+
+
+        tvEmergancyNumber.setText(mySharedPreferences.getTeacherEmergancyNumber());
+//        Linkify.addLinks(tvEmergancyNumber, Linkify.PHONE_NUMBERS);
+//        tvEmergancyNumber.setLinkTextColor(Color.WHITE);
+
+        tvMobileNumber.setText(mySharedPreferences.getTeacherMobileNumber());
+//        Linkify.addLinks(tvMobileNumber, Linkify.PHONE_NUMBERS);
+//        tvMobileNumber.setLinkTextColor(Color.WHITE);
+
+        tvClass.setText(mySharedPreferences.getTeacherClassName());
+        tvTeacherStatus.setText(mySharedPreferences.getTeacherStatus());
+        tvTeacherName.setText(mySharedPreferences.getTeacherName());
+
+        tvTeacherTotalCount.setText("("+ mySharedPreferences.getTotalRateCount() +")");
+
+        ratingBar_teacher_rating.setProgress(mySharedPreferences.getTeacherRating());
+
+    }
+
+    public void callNumber(String mobileNumber) {
 
 
         Toast.makeText(getActivity().getApplicationContext(), "Calling", Toast.LENGTH_LONG).show();
         Intent callIntent = new Intent(Intent.ACTION_CALL);
-        String phoneNumber = "9975239423";
+        String phoneNumber = mobileNumber;
         callIntent.setData(Uri.parse("tel:" + phoneNumber));
         startActivity(callIntent);
     }
 
+    public JSONObject getRequestParameters() {
+        JSONObject params = new JSONObject();
+        try {
 
+
+            params.put("School_id", mySharedPreferences.getSchoolId());
+            params.put("Student_Id", mySharedPreferences.getKidId());
+            Log.d("params", params.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return params;
+    }
+
+    private void initailizeViews() {
+
+        tvEmailAddrs = (CustomTextView) rootView.findViewById(R.id.teacher_profile_textview_email_addrs);
+        tvClass = (CustomTextView) rootView.findViewById(R.id.teacher_profile_textview_class);
+        tvEmergancyNumber = (CustomTextView) rootView.findViewById(R.id.teacher_profile_textview_emergancy_number);
+        tvMobileNumber = (CustomTextView) rootView.findViewById(R.id.teacher_profile_textview_mobile_number);
+        tvTeacherName = (CustomTextView) rootView.findViewById(R.id.teacher_profile_textview_name);
+        tvTeacherStatus = (CustomTextView) rootView.findViewById(R.id.teacher_profile_textview_status);
+        tvTeacherTotalCount = (CustomTextView) rootView.findViewById(R.id.teacher_profile_textview_total_count);
+
+        imgCall = (ImageView) rootView.findViewById(R.id.teacher_profile_img_call);
+        imgEmergancyCall = (ImageView) rootView.findViewById(R.id.teacher_profile_img_emergancy_call);
+
+        ratingBar_teacher_rating = (RatingBar) rootView.findViewById(R.id.ratingBar_teacher_rating);
+        btnRate = (Button) rootView.findViewById(R.id.teacher_profile_btn_rate);
+    }
+
+    @Override
+    public void onCompleteTask(JSONObject jsonObject,int flag) {
+        if (jsonObject != null) {
+            Log.d("Teacher Info Fragment", jsonObject.toString());
+            try {
+                success = jsonObject.getBoolean("success");
+                message = jsonObject.getString("message");
+
+                if (success) {
+                    temp = jsonObject.getJSONObject("teacher_info");
+                    Log.d("Temp", temp.toString());
+                    setMySharedPreferences();
+                    setParameters();
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+        } else {
+            try {
+                message = jsonObject.getString("message");
+                Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    private void setMySharedPreferences() {
+        try {
+            mySharedPreferences.setTeacherEmailAddress(temp.getString("Email_Id"));
+            mySharedPreferences.setTeacherEmergancyNumber(temp.getString("Emergancy_Number"));
+            mySharedPreferences.setTeacherMobileNumber(temp.getString("Mobile_Number"));
+            mySharedPreferences.setTeacherName(temp.getString("Teacher_Name"));
+            mySharedPreferences.setTeacherStatus(temp.getString("Status"));
+            mySharedPreferences.setTeacherClassName(temp.getString("class"));
+            mySharedPreferences.setTeacherRating(temp.getInt("Star_Rating"));
+            mySharedPreferences.setTeacherId(temp.getString("teacher_id"));
+            mySharedPreferences.setTeacherInfoStatus(true);
+            mySharedPreferences.setTotalRateCount(temp.getString("rating_count"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()) {
+            case R.id.teacher_profile_img_call:
+                callNumber(tvMobileNumber.getText().toString().trim());
+                break;
+            case R.id.teacher_profile_img_emergancy_call:
+                callNumber(tvEmergancyNumber.getText().toString().trim());
+                break;
+            case R.id.teacher_profile_btn_rate:
+                rateTeacherDialog.show();
+                break;
+
+        }
+    }
 }

@@ -17,11 +17,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.mdcconcepts.kidsi.performance.Perfomance;
+import org.mdcconcepts.kidsi.performance.PerfomanceChartActivity;
 import org.mdcconcepts.kidsi.R;
 import org.mdcconcepts.kidsi.Util.Util;
 import org.mdcconcepts.kidsi.chat.FinalChatActivity;
-import org.mdcconcepts.kidsi.health.Health;
+import org.mdcconcepts.kidsi.health.HealthChartActivity;
 import org.mdcconcepts.kidsi.livewebcam.LivecamActivity;
 
 
@@ -31,27 +31,11 @@ public class HomeFragment extends Fragment {
     }
 
     static View rootView = null;
-    private ImageView cameraImg, healthImage, performanceImage, chatImgage, iconView;
-
-
-    Button Button_Controller_Video_Streaming;
-
-    Button Button_Controller_Health;
-
-    Button Button_Controller_Performance;
-
-    Button Button_Controller_Chat;
-
-    TextView TextViewController_MenuLiveCam;
-
-    TextView TextViewController_MenuHealth;
-
-    TextView TextViewController_MenuPerformance;
-
-    TextView TextViewController_MenuChat;
-
+    Button btnVideoStreaming;
+    Button btnHealth;
+    Button btnPerformance;
+    Button btnChat;
     Typeface font;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,43 +43,18 @@ public class HomeFragment extends Fragment {
 
         try {
 
-            rootView = inflater.inflate(R.layout.activity_menu_another, container, false);
-
-//            iconView = (ImageView) rootView.findViewById(R.id.iconView);
-            final int imagesToShow[] = {R.drawable.livecamerabigimg, R.drawable.healthbigimg, R.drawable.performancebigimg, R.drawable.chatbigimg};
-            final ImageView imageViewButtonArray[] = {cameraImg, healthImage, performanceImage, chatImgage};
+            rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
             font = Typeface.createFromAsset(getActivity().getAssets(), Util.FontName);
 
-            TextViewController_MenuLiveCam = (TextView) rootView.findViewById(R.id.TextViewController_MenuLiveCam);
+            btnVideoStreaming = (Button) rootView.findViewById(R.id.Button_Controller_Video_Streaming);
 
-            TextViewController_MenuHealth = (TextView) rootView.findViewById(R.id.TextViewController_MenuHealth);
-
-            TextViewController_MenuPerformance = (TextView) rootView.findViewById(R.id.TextViewController_MenuPerformance);
-
-            TextViewController_MenuChat = (TextView) rootView.findViewById(R.id.TextViewController_MenuChat);
-
-
-            TextViewController_MenuChat.setTypeface(font);
-
-            TextViewController_MenuHealth.setTypeface(font);
-
-            TextViewController_MenuLiveCam.setTypeface(font);
-
-            TextViewController_MenuPerformance.setTypeface(font);
-
-            Button_Controller_Video_Streaming = (Button) rootView.findViewById(R.id.Button_Controller_Video_Streaming);
-
-            Button_Controller_Video_Streaming.setOnClickListener(new View.OnClickListener() {
+            btnVideoStreaming.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View arg0) {
 
-//                    Toast.makeText(getActivity(),
-//                            "ImageButton (selector) is clicked!",
-//                            Toast.LENGTH_SHORT).show();
                     try {
-//                        animate(iconView, cameraImg, imageViewButtonArray, imagesToShow, 0, false);
                         Intent intent = new Intent(getActivity(), LivecamActivity.class);
                         startActivity(intent);
                     } catch (Exception e) {
@@ -105,19 +64,14 @@ public class HomeFragment extends Fragment {
                 }
 
             });
-            Button_Controller_Health = (Button) rootView.findViewById(R.id.Button_Controller_Health);
+            btnHealth = (Button) rootView.findViewById(R.id.Button_Controller_Health);
 
-            Button_Controller_Health.setOnClickListener(new View.OnClickListener() {
+            btnHealth.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View arg0) {
-
-//                    Toast.makeText(getActivity(),
-//                            "ImageButton (selector) is clicked!",
-//                            Toast.LENGTH_SHORT).show();
                     try {
-//                        animate(iconView, cameraImg, imageViewButtonArray, imagesToShow, 0, false);
-                        Intent intent = new Intent(getActivity(), Health.class);
+                        Intent intent = new Intent(getActivity(), HealthChartActivity.class);
                         startActivity(intent);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -126,19 +80,15 @@ public class HomeFragment extends Fragment {
                 }
 
             });
-            Button_Controller_Performance = (Button) rootView.findViewById(R.id.Button_Controller_Performance);
+            btnPerformance = (Button) rootView.findViewById(R.id.Button_Controller_Performance);
 
-            Button_Controller_Performance.setOnClickListener(new View.OnClickListener() {
+            btnPerformance.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View arg0) {
 
-//                    Toast.makeText(getActivity(),
-//                            "ImageButton (selector) is clicked!",
-//                            Toast.LENGTH_SHORT).show();
                     try {
-//                        animate(iconView, cameraImg, imageViewButtonArray, imagesToShow, 0, false);
-                        Intent intent = new Intent(getActivity(), Perfomance.class);
+                        Intent intent = new Intent(getActivity(), PerfomanceChartActivity.class);
                         startActivity(intent);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -147,20 +97,13 @@ public class HomeFragment extends Fragment {
                 }
 
             });
-            Button_Controller_Chat = (Button) rootView.findViewById(R.id.Button_Controller_Chat);
+            btnChat = (Button) rootView.findViewById(R.id.Button_Controller_Chat);
 
-            Button_Controller_Chat.setOnClickListener(new View.OnClickListener() {
+            btnChat.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View arg0) {
-
-//                    Toast.makeText(getActivity(),
-//                            "ImageButton (selector) is clicked!",
-//                            Toast.LENGTH_SHORT).show();
                     try {
-//                        animate(iconView, chatImgage, imageViewButtonArray, imagesToShow, 3, false);
-
-//                        Intent intent = new Intent(getActivity(), RegisterActivity.class);
                         Intent intent = new Intent(getActivity(), FinalChatActivity.class);
                         startActivity(intent);
                     } catch (Exception e) {
@@ -171,92 +114,6 @@ public class HomeFragment extends Fragment {
 
             });
 
-            /*
-            cameraImg = (ImageView) rootView.findViewById(R.id.imageCamera);
-            healthImage = (ImageView) rootView.findViewById(R.id.imageHealth);
-            performanceImage = (ImageView) rootView.findViewById(R.id.imagePerforme);
-            chatImgage = (ImageView) rootView.findViewById(R.id.imageChat);
-
-            iconView = (ImageView) rootView.findViewById(R.id.iconView);
-            final int imagesToShow[] = {R.drawable.livecamerabigimg, R.drawable.healthbigimg, R.drawable.performancebigimg, R.drawable.chatbigimg};
-            final ImageView imageViewButtonArray[] = {cameraImg, healthImage, performanceImage, chatImgage};
-
-            cameraImg.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-
-                    //Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    try {
-                        animate(iconView, cameraImg, imageViewButtonArray, imagesToShow, 0, false);
-                        Intent intent = new Intent(getActivity(), LivecamActivity.class);
-                        startActivity(intent);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-//                finish();
-
-                    //startActivityForResult(intent, 0);
-
-                    //iconView.setImageResource(R.drawable.camera);
-
-
-                }
-            });
-            healthImage.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-
-                    //Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-                    //startActivityForResult(intent, 0);
-                    try {
-                        animate(iconView, healthImage, imageViewButtonArray, imagesToShow, 1, false);
-                        //iconView.setImageResource(R.drawable.camera);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-
-                }
-            });
-
-            performanceImage.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-
-                    //Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-                    //startActivityForResult(intent, 0);
-                    try {
-                        animate(iconView, performanceImage, imageViewButtonArray, imagesToShow, 2, false);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    //iconView.setImageResource(R.drawable.camera);
-
-
-                }
-            });
-
-            chatImgage.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-
-                    try {
-                        animate(iconView, chatImgage, imageViewButtonArray, imagesToShow, 3, false);
-
-//                        Intent intent = new Intent(getActivity(), RegisterActivity.class);
-                        Intent intent = new Intent(getActivity(), FinalChatActivity.class);
-                        startActivity(intent);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            });*/
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -296,7 +153,6 @@ public class HomeFragment extends Fragment {
 
         AnimationSet animation = new AnimationSet(false); // change to false
         animation.addAnimation(fadeIn);
-        //animation.addAnimation(fadeOut);
         animation.setRepeatCount(1);
 
 
@@ -304,16 +160,6 @@ public class HomeFragment extends Fragment {
 
         animation.setAnimationListener(new Animation.AnimationListener() {
             public void onAnimationEnd(Animation animation) {
-                // animate(imageView, images, 0,true)
-
-//	            if (images.length - 1 > imageIndex) {
-//	                animate(imageView, images, imageIndex + 1,forever); //Calls itself until it gets to the end of the array
-//	            }
-//	            else {
-//	                if (forever == true){
-//	                animate(imageView, images, 0,forever);  //Calls itself to start the animation all over again in a loop if forever = true
-//	                }
-//	            }
             }
 
             public void onAnimationRepeat(Animation animation) {

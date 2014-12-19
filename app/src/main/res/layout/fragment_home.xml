@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_bg_main"
+    android:background="@drawable/ic_chat_bg"
     android:orientation="vertical">
 
     <ImageView
@@ -12,69 +12,191 @@
         android:src="@drawable/ic_mdc_school_logo"
         android:layout_gravity="top|center"
         android:layout_marginTop="10dp"
-        android:layout_weight="1"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp" />
-    <LinearLayout
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_weight="1" />
+
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="bottom|center_horizontal|center_vertical"
-        android:layout_weight="0.5">
+        android:layout_weight="0.5"
+        android:padding="10dp"
+        android:background="@drawable/universal_background">
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:weightSum="2">
 
-
-        <ImageView
-            android:id="@+id/iconView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp" />
-        <HorizontalScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/horizontalScrollView2"
-            android:fillViewport="false"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center"
                 android:orientation="horizontal"
-                android:gravity="center_horizontal"
-                android:layout_marginBottom="20dp">
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:weightSum="8"
+                android:layout_weight="1">
+
+                <FrameLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4">
+
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/Button_Controller_Video_Streaming"
+                        android:background="@drawable/video_menu_selector"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"/>
+
+
+                    <org.mdcconcepts.kidsi.customitems.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/live_cam"
+                        android:id="@+id/TextViewController_MenuLiveCam"
+                        android:layout_gravity="center"
+                        android:textSize="14dp"
+                        android:layout_marginTop="60dp"
+                        android:fontFamily="@string/font_name"
+                        android:textColor="#FFFFFF" />
+
+                </FrameLayout>
+
 
                 <ImageView
-                    android:id="@+id/imageCamera"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_livecam_with_text"
-                    android:layout_marginRight="5dp" />
+                    android:layout_height="match_parent"
+                    android:id="@+id/imageView3"
+                    android:background="@drawable/menu_line"
+                    android:layout_gravity="center" />
+
+                <FrameLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4">
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/Button_Controller_Health"
+                        android:background="@drawable/health_menu_selector"
+                        android:layout_gravity="center"
+                        android:layout_weight="1" />
+
+                    <org.mdcconcepts.kidsi.customitems.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/TextViewController_MenuHealth"
+                        android:text="@string/health_chart"
+                        android:layout_gravity="center"
+                        android:textSize="14dp"
+                        android:layout_marginTop="60dp"
+                        android:fontFamily="@string/font_name"
+                        android:textColor="#FFFFFF" />
+
+                </FrameLayout>
 
 
-
-                <ImageView
-                    android:id="@+id/imageHealth"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_health_with_text"
-                    android:layout_marginRight="5dp" />
-
-                <ImageView
-                    android:id="@+id/imagePerforme"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_performance_with_text"
-                    android:layout_marginRight="5dp" />
-
-                <ImageView
-                    android:id="@+id/imageChat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_chat_with_text"
-                    android:layout_marginRight="5dp" />
             </LinearLayout>
-        </HorizontalScrollView>
-    </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView7"
+                    android:background="@drawable/menu_line_hr"
+                    android:layout_weight="2" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView8"
+                    android:background="@drawable/menu_line_hr"
+                    android:layout_weight="2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:weightSum="8"
+                android:id="@+id/linearLayout"
+                android:layout_weight="1">
+
+                <FrameLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4">
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/Button_Controller_Performance"
+                        android:background="@drawable/performance_menu_selector"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"/>
+
+                    <org.mdcconcepts.kidsi.customitems.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/performance_chart"
+                        android:id="@+id/TextViewController_MenuPerformance"
+                        android:layout_gravity="center"
+                        android:textSize="14dp"
+                        android:layout_marginTop="65dp"
+                        android:fontFamily="@string/font_name"
+                        android:textColor="#FFFFFF" />
+
+                </FrameLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imageView9"
+                    android:background="@drawable/menu_line"
+                    android:layout_gravity="center" />
+                <FrameLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4">
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/Button_Controller_Chat"
+                        android:background="@drawable/chat_menu_selector"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"/>
+
+                     <org.mdcconcepts.kidsi.customitems.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/chat"
+                        android:id="@+id/TextViewController_MenuChat"
+                        android:layout_gravity="center"
+                        android:textSize="14sp"
+                        android:layout_marginTop="65dp"
+                         android:fontFamily="@string/font_name"
+                        android:textColor="#FFFFFF" />
+                </FrameLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
 </LinearLayout>

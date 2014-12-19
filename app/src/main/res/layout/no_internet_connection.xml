@@ -12,6 +12,7 @@
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/no_internet"
         android:src="@drawable/ic_no_internet_connection" />
 
     <LinearLayout
@@ -27,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:text="No Internet Connection"
+        android:text="@string/no_internet"
         android:textAllCaps="true"
         android:textColor="@color/orange_color"
         android:textSize="14sp"
@@ -41,7 +42,7 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/button_background_orange"
         android:padding="5dp"
-        android:text="Ok"
+        android:text="@string/ok"
         android:textColor="#ffffff"
         android:textSize="14sp" />
 

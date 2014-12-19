@@ -3,21 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
     android:layout_gravity="center_vertical"
-    android:background="@drawable/ic_bg_white"
+    android:background="@drawable/ic_chat_bg"
     android:orientation="vertical"
     tools:context="com.kisdi.LoadingActivity">
 
-
-    <ImageView
-        android:id="@+id/kids_drop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_marginBottom="29dp"
-        android:src="@drawable/kids_drop"
-        android:layout_weight="0"
-        android:layout_marginRight="100dp"
-        android:visibility="invisible" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -38,7 +27,7 @@
             android:id="@+id/progressBar1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:indeterminate="false" />
+            android:indeterminateDrawable="@drawable/loader_selector" />
 
         <ImageView
             android:id="@+id/imageView1"
@@ -46,29 +35,39 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="false"
             android:src="@drawable/loading"
-            android:visibility="visible" />
+            android:visibility="invisible" />
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="horizontal"
-        android:weightSum="5"
-        android:layout_gravity="left|bottom"
-        android:id="@+id/linearLayout" >
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView3"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/loading_page_bg" />
 
-        <ImageView
-            android:id="@+id/to_school"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="29dp"
-            android:layout_weight="1"
-            android:src="@drawable/to_school"
-            android:layout_marginLeft="-120dp" />
 
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/to_school"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="1"
+        android:layout_marginLeft="-100dp"
+        android:src="@drawable/to_school" />
+
+    <ImageView
+        android:id="@+id/kids_drop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/kids_drop"
+
+        android:layout_marginRight="100dp"
+        android:visibility="invisible" />
 
 
 </FrameLayout>

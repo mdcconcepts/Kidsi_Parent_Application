@@ -73,6 +73,34 @@
     <string name="title_activity_test_show_message">TestShowMessage</string>
     <string name="title_activity_livecam">LivecamActivity</string>
     <string name="title_activity_health">Health</string>
-    <string name="title_activity_perfamance">Perfamance</string>
+    <string name="title_activity_perfamance">Performance</string>
+    <string name="no_internet">No Internet Connection</string>
+    <string name="ok">Ok</string>
+    <string name="dummy_content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </string>
+    <string name="profile_pic">Profile Picture</string>
+    <string name="teacher_name">Teacher Name</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="health_chart">Health Chart</string>
+    <string name="performance_chart">Performance Chart</string>
+    <string name="live_cam">Live Camera</string>
+    <string name="chat">Chat</string>
+    <string name="milk">Milk</string>
+    <string name="food">Food</string>
+    <string name="sleep">Sleep</string>
+    <string name="play">Play</string>
+    <string name="Singing_talking">Singing/Talking</string>
+    <string name="drawing">Drawing</string>
+    <string name="font_name">tt0142m_.ttf</string>
+
+    <declare-styleable name="customFont">
+        <attr name="android:fontFamily" />
+        <attr name="android:textStyle" />
+    </declare-styleable>
+
+    <string name="title_activity_about_app">AboutAppActivity</string>
+    <string name="title_activity_privacy_policy">PrivacyPolicyActivity</string>
+    <string name="title_activity_kids_profile">KidsProfileActivity</string>
+    <string name="title_activity_notification">NotificationActivity</string>
+    <string name="title_activity_splash_screen">SplashScreenActivity</string>
 
 </resources>

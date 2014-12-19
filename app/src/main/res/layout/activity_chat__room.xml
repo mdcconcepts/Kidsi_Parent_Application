@@ -1,0 +1,302 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout_Main"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ic_chat_bg"
+    android:orientation="vertical">
+
+    <!--  <RelativeLayout
+          android:orientation="horizontal"
+          android:layout_width="match_parent"
+          android:layout_height="50dp"
+          android:layout_gravity="bottom"
+          android:gravity="center"
+          android:id="@+id/footer"
+          android:layout_alignParentBottom="true"
+          android:layout_alignParentLeft="true"
+          android:layout_alignParentStart="false"
+          android:background="#3d3d3d"
+         >
+
+         <EditText
+             android:layout_width="270dp"
+             android:layout_height="30dp"
+             android:id="@+id/EditTextViewController_ChatMsg"
+             android:background="@drawable/edittext_background"
+ android:gravity="center_vertical|clip_horizontal"
+             android:singleLine="true"
+             android:padding="5dp"
+             android:layout_centerHorizontal="true"
+             android:layout_marginLeft="10dp"
+             android:layout_centerVertical="true"
+             android:layout_alignParentLeft="true"
+             android:layout_alignParentStart="true"
+             android:layout_marginTop="10dp"
+             android:layout_marginBottom="10dp" />
+
+         <ImageView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:id="@+id/ImageController_Send"
+             android:src="@drawable/ic_send"
+             android:gravity="center_vertical|clip_horizontal"
+
+             android:layout_toStartOf="@+id/imageView5"
+             android:layout_alignParentTop="true"
+             android:layout_toLeftOf="@+id/imageView5" />
+
+          <ImageView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:id="@+id/imageView5"
+              android:gravity="center_vertical|clip_horizontal"
+              android:src="@drawable/ic_attachment"
+              android:layout_centerVertical="true"
+              android:layout_alignParentRight="true"
+              android:layout_alignParentEnd="true"
+              android:layout_marginRight="20dp" />
+      </RelativeLayout>-->
+    <ScrollView
+        android:id="@+id/scrollableContents"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/footer"
+        android:layout_alignParentTop="true"
+        android:fillViewport="false">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical"
+
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            >
+
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                >
+
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60dp"
+                    android:background="@drawable/chat_room_box_selector"
+                    android:orientation="vertical"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="40dp"
+                    android:paddingTop="10dp">
+
+                    <TextView
+                        android:id="@+id/TextViewController_Msg_One"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp"
+
+                        android:text="Hii , Mr.Deo From when your kid will be joining Kidsi ?"
+                        android:textColor="#333" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginRight="10dp"
+                        android:text="7 min ago"
+                        android:textColor="#333" />
+
+                    android:paddingBottom="10dp">
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/techer_pic" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/frameLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="60dp"
+                    android:background="@drawable/chat_room_box_selector"
+                    android:orientation="vertical"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="40dp"
+                    android:paddingTop="10dp">
+
+                    <TextView
+                        android:id="@+id/TextViewController_Msg_Two"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:paddingBottom="10dp"
+                        android:text="Hello Ms.Poonam. He will resume on Monday"
+                        android:textColor="#333" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginRight="10dp"
+                        android:text="5 min ago"
+                        android:textColor="#333" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="right"
+                    android:src="@drawable/parent_pic" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/frameLayout2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60dp"
+                    android:background="@drawable/chat_room_box_selector"
+                    android:orientation="vertical"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="40dp"
+                    android:paddingTop="10dp">
+
+                    <TextView
+                        android:id="@+id/TextViewController_Msg_Three"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp"
+                        android:text="Okay, Thank you.."
+                        android:textColor="#333" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginRight="10dp"
+                        android:text="3 min ago"
+                        android:textColor="#333" />
+
+                    android:paddingBottom="10dp">
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/techer_pic" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/FrameLayout_Parent_Dynamic"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="60dp"
+                    android:background="@drawable/chat_room_box_selector"
+                    android:orientation="vertical"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="40dp"
+                    android:paddingTop="10dp">
+
+                    <TextView
+                        android:id="@+id/TextViewController_Msg_Dynamic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+
+                        android:paddingBottom="10dp"
+                        android:text="Hello Ms.Poonam. He will resume on Monday"
+                        android:textColor="#333" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginRight="10dp"
+                        android:text="..."
+                        android:textColor="#333" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="right"
+                    android:src="@drawable/parent_pic" />
+            </FrameLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="false"
+        android:layout_gravity="bottom"
+        android:background="#3d3d3d"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/EditTextViewController_ChatMsg"
+            android:layout_width="270dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/edittext_background"
+            android:padding="5dp" />
+
+        <ImageView
+            android:id="@+id/ImageController_Send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignTop="@+id/EditTextViewController_ChatMsg"
+
+            android:layout_toEndOf="@+id/EditTextViewController_ChatMsg"
+            android:layout_toRightOf="@+id/EditTextViewController_ChatMsg"
+            android:gravity="center_vertical|clip_horizontal"
+            android:src="@drawable/ic_send" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/ImageController_Send"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/ImageController_Send"
+            android:layout_toRightOf="@+id/ImageController_Send"
+            android:src="@drawable/ic_attachment" />
+    </RelativeLayout>
+</RelativeLayout>

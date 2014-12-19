@@ -8,9 +8,11 @@ import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 public class LoadingActivity extends Activity {
 
@@ -19,15 +21,24 @@ public class LoadingActivity extends Activity {
     public ImageView to_school;
     private ImageView Kids_Drop;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
+        initViews();
+//        initParameters();
+        animate_bus();
+    }
+
+    private void initViews() {
         to_school = (ImageView) findViewById(R.id.to_school);
         Kids_Drop = (ImageView) findViewById(R.id.kids_drop);
 
-        animate_bus();
+    }
+
+    private void initParameters() {
+
+
     }
 
     @Override

@@ -30,5 +30,4 @@
         <item name="android:progressDrawable">@drawable/apptheme_ratingbar_full_holo_light</item>
     </style>
 
-
 </resources>

@@ -5,29 +5,6 @@
     android:background="#50cccccc"
     android:orientation="vertical">
 
-    <!-- <LinearLayout
-         android:layout_width="fill_parent"
-         android:layout_height="fill_parent"
-         android:orientation="vertical"
-         android:layout_weight="1"
-         android:layout_gravity="center_horizontal"
-         android:gravity="center">
-         <ImageView
-             android:layout_width="fill_parent"
-             android:layout_height="wrap_content"
-             android:id="@+id/imageView"
-             android:src="@drawable/ic_teacher_profile" />
-
-         <TextView
-             android:layout_width="fill_parent"
-             android:layout_height="wrap_content"
-             android:textAppearance="?android:attr/textAppearanceMedium"
-             android:text="MRS.JOSHI"
-             android:id="@+id/TextViewController_TeacherName"
-             android:layout_gravity="center_vertical"
-             android:gravity="center" />
-
-     </LinearLayout>-->
 
     <FrameLayout
         android:layout_width="fill_parent"
@@ -54,7 +31,7 @@
             android:layout_gravity="right|top"
             android:gravity="left|center"
             android:paddingLeft="20dp"
-            android:text="Ms.Poonam"
+            android:text="Mrs.Poonam"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#333" />
 

@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:background="@drawable/ic_chat_bg">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="true">
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TableLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center"
+                android:background="@drawable/universal_background"
+                android:layout_marginTop="70dp">
+
+                <org.mdcconcepts.kidsi.customitems.CustomTextView
+                    android:id="@+id/teacher_profile_textview_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Teacher Name"
+                    android:textSize="16sp"
+                    android:fontFamily="@string/font_name"
+                    android:textColor="#FFFFFF"
+                    android:padding="10dp"
+                    android:textAllCaps="true"
+
+                    android:layout_marginTop="50dp" />
+
+                <org.mdcconcepts.kidsi.customitems.CustomTextView
+                    android:id="@+id/teacher_profile_textview_status"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Status"
+                    android:textSize="16sp"
+                    android:fontFamily="@string/font_name"
+                    android:textColor="#FFFFFF"
+                    android:padding="2dp" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <RatingBar
+                        android:id="@+id/ratingBar_teacher_rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:isIndicator="true"
+                        android:stepSize="1"
+                        android:numStars="5"
+                        android:progressDrawable="@drawable/apptheme_ratingbar_full_holo_light" />
+                    <org.mdcconcepts.kidsi.customitems.CustomTextView
+                        android:id="@+id/teacher_profile_textview_total_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="(count)"
+                        android:textSize="16sp"
+                        android:layout_marginLeft="2dp"
+                        android:fontFamily="@string/font_name"
+                        android:textColor="#FFFFFF"
+                        android:padding="2dp" />
+
+                </LinearLayout>
+
+                <TableRow
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView2"
+                        android:src="@drawable/mobile_icon"
+                        android:padding="0dp" />
+
+                    <org.mdcconcepts.kidsi.customitems.CustomTextView
+                        android:id="@+id/teacher_profile_textview_mobile_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Mobile Number"
+                        android:textSize="16sp"
+                        android:fontFamily="@string/font_name"
+                        android:textColor="#FFFFFF"
+                        android:padding="10dp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/teacher_profile_img_call"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:src="@drawable/ic_mobile" />
+
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="fill_parent"
+                        android:background="#ffffff"
+                        android:alpha="0.2"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView4"
+                        android:src="@drawable/chat_icon"
+                        android:layout_margin="5dp" />
+
+
+                </TableRow>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="#ffffff"
+                    android:alpha="0.5"
+                    android:layout_margin="10dp" />
+
+                <TableRow
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView5"
+                        android:src="@drawable/ic_emergancy" />
+
+                    <org.mdcconcepts.kidsi.customitems.CustomTextView
+                        android:id="@+id/teacher_profile_textview_emergancy_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_weight="1"
+                        android:text="Mobile Number"
+                        android:textSize="16sp"
+                        android:fontFamily="@string/font_name"
+                        android:textColor="#FFFFFF"
+                        android:padding="10dp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/teacher_profile_img_emergancy_call"
+                        android:src="@drawable/ic_mobile"
+                        android:layout_margin="5dp" />
+                </TableRow>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="#ffffff"
+                    android:alpha="0.5"
+                    android:layout_margin="10dp" />
+
+                <TableRow
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView6"
+                        android:src="@drawable/ic_class" />
+
+                    <org.mdcconcepts.kidsi.customitems.CustomTextView
+                        android:id="@+id/teacher_profile_textview_class"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Play Group"
+                        android:textSize="16sp"
+                        android:fontFamily="@string/font_name"
+                        android:textColor="#FFFFFF"
+                        android:padding="10dp" />
+
+                </TableRow>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="#ffffff"
+                    android:alpha="0.5"
+                    android:layout_margin="10dp" />
+
+                <TableRow
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView6"
+                        android:src="@drawable/ic_email_addr" />
+
+                    <org.mdcconcepts.kidsi.customitems.CustomTextView
+                        android:id="@+id/teacher_profile_textview_email_addrs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Email Address"
+                        android:textSize="16sp"
+                        android:fontFamily="@string/font_name"
+                        android:textColor="#FFFFFF"
+                        android:padding="10dp" />
+                </TableRow>
+            </TableLayout>
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/imageView"
+                android:src="@drawable/techer_pic"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="50dp" />
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:text="Rate"
+                android:id="@+id/teacher_profile_btn_rate"
+                android:layout_gravity="right|top"
+                android:layout_margin="10dp"
+                android:textSize="16dp" />
+        </FrameLayout>
+    </ScrollView>
+
+</FrameLayout>
