@@ -527,6 +527,17 @@ public class AppSharedPreferences {
         editor.commit();
     }
 
+    public String getParentProfileUrl() {
+        return prefs.getString("parentProfileUrl", null);
+    }
+
+    public void setParentProfileUrl(String parentProfileUrl) {
+        editor = prefs.edit();
+        editor.putString("parentProfileUrl", parentProfileUrl);
+        editor.commit();
+    }
+
+    String parentProfileUrl;
     public Boolean getKidInfoStatus() {
         return prefs.getBoolean("KidInfoStatus", false);
     }
@@ -628,6 +639,16 @@ public class AppSharedPreferences {
         editor.commit();
     }
 
-    String TotalRateCount;
+    public String getTeacherProfileUrl() {
+        return prefs.getString("TeacherProfileUrl", null);
+    }
+
+    public void setTeacherProfileUrl(String teacherProfileUrl) {
+        editor = prefs.edit();
+        editor.putString("TeacherProfileUrl", teacherProfileUrl);
+        editor.commit();
+    }
+
+    String TeacherProfileUrl;
 }
 

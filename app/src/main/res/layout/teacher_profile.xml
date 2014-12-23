@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ic_chat_bg"
     android:gravity="center_horizontal"
-    android:background="@drawable/ic_chat_bg">
+    android:orientation="vertical">
 
     <ScrollView
         android:layout_width="fill_parent"
@@ -17,39 +18,39 @@
             android:layout_height="fill_parent">
 
             <TableLayout
-                android:orientation="vertical"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_gravity="center"
+                android:layout_marginTop="70dp"
                 android:background="@drawable/universal_background"
-                android:layout_marginTop="70dp">
+                android:orientation="vertical">
 
                 <org.mdcconcepts.kidsi.customitems.CustomTextView
                     android:id="@+id/teacher_profile_textview_name"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="Teacher Name"
-                    android:textSize="16sp"
+                    android:layout_marginTop="50dp"
                     android:fontFamily="@string/font_name"
-                    android:textColor="#FFFFFF"
+                    android:gravity="center"
                     android:padding="10dp"
+                    android:text="Teacher Name"
                     android:textAllCaps="true"
+                    android:textColor="#FFFFFF"
 
-                    android:layout_marginTop="50dp" />
+                    android:textSize="16sp" />
 
                 <org.mdcconcepts.kidsi.customitems.CustomTextView
                     android:id="@+id/teacher_profile_textview_status"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="Status"
-                    android:textSize="16sp"
                     android:fontFamily="@string/font_name"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="Status"
                     android:textColor="#FFFFFF"
-                    android:padding="2dp" />
+                    android:textSize="16sp" />
 
                 <LinearLayout
                     android:layout_width="fill_parent"
@@ -62,56 +63,57 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:isIndicator="true"
-                        android:stepSize="1"
                         android:numStars="5"
-                        android:progressDrawable="@drawable/apptheme_ratingbar_full_holo_light" />
+                        android:progressDrawable="@drawable/apptheme_ratingbar_full_holo_light"
+                        android:stepSize="1" />
+
                     <org.mdcconcepts.kidsi.customitems.CustomTextView
                         android:id="@+id/teacher_profile_textview_total_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="(count)"
-                        android:textSize="16sp"
                         android:layout_marginLeft="2dp"
                         android:fontFamily="@string/font_name"
+                        android:gravity="center"
+                        android:padding="2dp"
+                        android:text="(count)"
                         android:textColor="#FFFFFF"
-                        android:padding="2dp" />
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
                 <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:gravity="center"
+                    android:layout_marginBottom="5dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:gravity="center">
 
                     <ImageView
+                        android:id="@+id/imageView2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/imageView2"
-                        android:src="@drawable/mobile_icon"
-                        android:padding="0dp" />
+                        android:padding="0dp"
+                        android:src="@drawable/mobile_icon" />
 
                     <org.mdcconcepts.kidsi.customitems.CustomTextView
                         android:id="@+id/teacher_profile_textview_mobile_number"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Mobile Number"
-                        android:textSize="16sp"
                         android:fontFamily="@string/font_name"
+                        android:padding="10dp"
+                        android:text="Mobile Number"
                         android:textColor="#FFFFFF"
-                        android:padding="10dp" />
+                        android:textSize="16sp" />
 
                     <ImageView
+                        android:id="@+id/teacher_profile_img_call"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/teacher_profile_img_call"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:src="@drawable/ic_mobile" />
@@ -120,17 +122,17 @@
                     <View
                         android:layout_width="1dp"
                         android:layout_height="fill_parent"
-                        android:background="#ffffff"
-                        android:alpha="0.2"
+                        android:layout_marginBottom="5dp"
                         android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp" />
+                        android:alpha="0.2"
+                        android:background="#ffffff" />
 
                     <ImageView
+                        android:id="@+id/imageView4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/imageView4"
-                        android:src="@drawable/chat_icon"
-                        android:layout_margin="5dp" />
+                        android:layout_margin="5dp"
+                        android:src="@drawable/chat_icon" />
 
 
                 </TableRow>
@@ -138,24 +140,24 @@
                 <View
                     android:layout_width="fill_parent"
                     android:layout_height="1dp"
-                    android:background="#ffffff"
+                    android:layout_margin="10dp"
                     android:alpha="0.5"
-                    android:layout_margin="10dp" />
+                    android:background="#ffffff" />
 
                 <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="5dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:gravity="center">
 
                     <ImageView
+                        android:id="@+id/imageView5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/imageView5"
                         android:src="@drawable/ic_emergancy" />
 
                     <org.mdcconcepts.kidsi.customitems.CustomTextView
@@ -164,41 +166,41 @@
                         android:layout_height="wrap_content"
 
                         android:layout_weight="1"
-                        android:text="Mobile Number"
-                        android:textSize="16sp"
                         android:fontFamily="@string/font_name"
+                        android:padding="10dp"
+                        android:text="Mobile Number"
                         android:textColor="#FFFFFF"
-                        android:padding="10dp" />
+                        android:textSize="16sp" />
 
                     <ImageView
+                        android:id="@+id/teacher_profile_img_emergancy_call"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/teacher_profile_img_emergancy_call"
-                        android:src="@drawable/ic_mobile"
-                        android:layout_margin="5dp" />
+                        android:layout_margin="5dp"
+                        android:src="@drawable/ic_mobile" />
                 </TableRow>
 
                 <View
                     android:layout_width="fill_parent"
                     android:layout_height="1dp"
-                    android:background="#ffffff"
+                    android:layout_margin="10dp"
                     android:alpha="0.5"
-                    android:layout_margin="10dp" />
+                    android:background="#ffffff" />
 
                 <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="5dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:gravity="center">
 
                     <ImageView
+                        android:id="@+id/imageView6"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/imageView6"
                         android:src="@drawable/ic_class" />
 
                     <org.mdcconcepts.kidsi.customitems.CustomTextView
@@ -206,35 +208,35 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Play Group"
-                        android:textSize="16sp"
                         android:fontFamily="@string/font_name"
+                        android:padding="10dp"
+                        android:text="Play Group"
                         android:textColor="#FFFFFF"
-                        android:padding="10dp" />
+                        android:textSize="16sp" />
 
                 </TableRow>
 
                 <View
                     android:layout_width="fill_parent"
                     android:layout_height="1dp"
-                    android:background="#ffffff"
+                    android:layout_margin="10dp"
                     android:alpha="0.5"
-                    android:layout_margin="10dp" />
+                    android:background="#ffffff" />
 
                 <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="5dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:gravity="center">
 
                     <ImageView
+                        android:id="@+id/imageView6"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/imageView6"
                         android:src="@drawable/ic_email_addr" />
 
                     <org.mdcconcepts.kidsi.customitems.CustomTextView
@@ -242,29 +244,40 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Email Address"
-                        android:textSize="16sp"
                         android:fontFamily="@string/font_name"
+                        android:padding="10dp"
+                        android:text="Email Address"
                         android:textColor="#FFFFFF"
-                        android:padding="10dp" />
+                        android:textSize="16sp" />
                 </TableRow>
             </TableLayout>
 
-            <ImageView
+            <org.mdcconcepts.kidsi.customitems.CircularImageView
+                android:id="@+id/teacher_profile_img_profile_pic"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:id="@+id/imageView"
-                android:src="@drawable/techer_pic"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="50dp" />
+                android:layout_marginTop="50dp"
+                android:clickable="true"
+                android:padding="0dp"
+                android:src="@drawable/ic_parent_profile"
+                app:border="true"
+                app:border_color="#3c3c3c"
+                app:border_width="6dp"
+                app:selector="true"
+                app:selector_color="#009d9d9d"
+                app:selector_stroke_color="#009d9d9d"
+                app:selector_stroke_width="4dp"
+                app:shadow="true" />
+
 
             <Button
+                android:id="@+id/teacher_profile_btn_rate"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
-                android:text="Rate"
-                android:id="@+id/teacher_profile_btn_rate"
                 android:layout_gravity="right|top"
                 android:layout_margin="10dp"
+                android:text="Rate"
                 android:textSize="16dp" />
         </FrameLayout>
     </ScrollView>

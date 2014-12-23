@@ -54,21 +54,21 @@ public class Util {
 
     public static String USER_TYPE="3";
 
-    public static String LOGIN_URL = " http://192.168.100.138:8080/kidsi/index.php?r=userMaster/Login";
+    public static String LOGIN_URL = " http://192.168.100.154:8080/kidsi/index.php?r=userMaster/Login";
 
-    public static String HEALTH_REPORT_URL = "http://192.168.100.138:8080/kidsi/index.php?r=userMaster/studenthealthreport";
+    public static String HEALTH_REPORT_URL = "http://192.168.100.154:8080/kidsi/index.php?r=userMaster/studenthealthreport";
 
-    public static String PERFORMANCE_REPORT_URL = "http://192.168.100.138:8080/kidsi/index.php?r=userMaster/Studentperformancereport";
+    public static String PERFORMANCE_REPORT_URL = "http://192.168.100.154:8080/kidsi/index.php?r=userMaster/Studentperformancereport";
 
-    public static String SCHOOL_INFO_URL="http://192.168.100.138:8080/kidsi/index.php?r=schoolMaster/schoolinfo";
+    public static String SCHOOL_INFO_URL="http://192.168.100.154:8080/kidsi/index.php?r=schoolMaster/schoolinfo";
 
-    public static String TEACHER_INFO_PROFILE="http://192.168.100.138:8080/kidsi/index.php?r=teacherMaster/teacherinfo";
+    public static String TEACHER_INFO_PROFILE="http://192.168.100.154:8080/kidsi/index.php?r=teacherMaster/teacherinfo";
 
-    public static String PARENT_INFO_PROFILE="http://192.168.100.138:8080/kidsi/index.php?r=userMaster/parentInformation";
+    public static String PARENT_INFO_PROFILE="http://192.168.100.154:8080/kidsi/index.php?r=userMaster/parentInformation";
 
-    public static String RATE_TEACHER="http://192.168.100.138:8080/kidsi/index.php?r=userMaster/Addteacherrating";
+    public static String RATE_TEACHER="http://192.168.100.154:8080/kidsi/index.php?r=userMaster/Addteacherrating";
 
-    public static String FORGOT_PASSWORD="http://192.168.100.138:8080/kidsi/index.php?r=userMaster/Forgetpass";
+    public static String FORGOT_PASSWORD="http://192.168.100.154:8080/kidsi/index.php?r=userMaster/Forgetpass";
 
-    public static String UPDATE_PARENT_INFO="http://192.168.100.138:8080/kidsi/index.php?r=userMaster/Updateparentinfo";
+    public static String UPDATE_PARENT_INFO="http://192.168.100.154:8080/kidsi/index.php?r=userMaster/Updateparentinfo";
 }

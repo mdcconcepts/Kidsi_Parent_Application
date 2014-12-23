@@ -18,6 +18,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -59,24 +61,26 @@ public class ParentProfileFragment extends Fragment implements CompleteAsyncTask
     private Intent intent;
 
     private JSONArray kidsJsonArray;
-    ListView lvMain;
-    View lvHeader;
-    ImageView imgEdit;
-    Button btnSave;
-    EditText edtAddress;
-    EditText edtEmergencyNo;
-    EditText edtMobileNumber;
-    EditText edtCompanyNumber;
-    EditText edtEmailId;
-    Typeface font;
-    int flag;
+    private ListView lvMain;
+    private View lvHeader;
+    private ImageView imgEdit;
+    private Button btnSave;
+    private EditText edtAddress;
+    private EditText edtEmergencyNo;
+    private EditText edtMobileNumber;
+    private EditText edtCompanyNumber;
+    private EditText edtEmailId;
+    private Typeface font;
+    private int flag;
 
-    String parentName;
-    String parentAddress;
-    String parentMobileNumber;
-    String parentCompanyNo;
-    String parentEmergencyNo;
-    String parentEmailId;
+    private String parentName;
+    private String parentAddress;
+    private String parentMobileNumber;
+    private String parentCompanyNo;
+    private String parentEmergencyNo;
+    private String parentEmailId;
+
+    private ImageView imgParentprofile;
 
     InternetConnectionDialog connectionDialog;
 
@@ -123,6 +127,8 @@ public class ParentProfileFragment extends Fragment implements CompleteAsyncTask
         tvParentComapnyNo = (CustomTextView) lvHeader.findViewById(R.id.parent_profile_textview_company_no);
         tvParentEmailAddress = (CustomTextView) lvHeader.findViewById(R.id.parent_profile_textview_email_addrs);
 
+
+
         imgEdit = (ImageView) lvHeader.findViewById(R.id.parent_profile_img_edit);
         btnSave = (Button) lvHeader.findViewById(R.id.parent_profile_btn_done_edit);
         edtAddress = (EditText) lvHeader.findViewById(R.id.parent_profile_edt_addr);
@@ -130,6 +136,7 @@ public class ParentProfileFragment extends Fragment implements CompleteAsyncTask
         edtMobileNumber = (EditText) lvHeader.findViewById(R.id.parent_profile_edt_mobile_number);
         edtCompanyNumber = (EditText) lvHeader.findViewById(R.id.parent_profile_edt_company_no);
         edtEmailId = (EditText) lvHeader.findViewById(R.id.parent_profile_edt_email_addrs);
+        imgParentprofile=(ImageView)lvHeader.findViewById(R.id.parent_profile_img_profile_pic);
 
         connectionDetector = new ConnectionDetector(getActivity());
         mySharedPreferences = new AppSharedPreferences(getActivity());
@@ -199,6 +206,9 @@ public class ParentProfileFragment extends Fragment implements CompleteAsyncTask
             mySharedPreferences.setParentCompanyMobileNumber(temp.getString("Landline_Number"));
             mySharedPreferences.setParentEmailAddr(temp.getString("Email"));
             mySharedPreferences.setParentInfoStatus(true);
+            mySharedPreferences.setParentProfileUrl(temp.getString("Profile_image"));
+
+            Picasso.with(getActivity()).load(mySharedPreferences.getParentProfileUrl()).into(imgParentprofile);
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -265,13 +265,11 @@ public class LoginActivity extends Activity implements OnClickListener, Complete
 
                 success = jsonObject.getBoolean("success");
                 message = jsonObject.getString("message");
-                Temp = jsonObject.getJSONObject("Parent_Info");
 
-
-                Log.d("Temp", Temp.toString());
 
                 if (success) {
-
+                    Temp = jsonObject.getJSONObject("Parent_Info");
+                    Log.d("Temp", Temp.toString());
                     Log.d("Success", "login");
                     setPreferences();
 

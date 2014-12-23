@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
@@ -19,12 +20,15 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.mdcconcepts.kidsi.R;
 import org.mdcconcepts.kidsi.Util.AppSharedPreferences;
 import org.mdcconcepts.kidsi.Util.Util;
 import org.mdcconcepts.kidsi.chat.ChatRoomActivity;
+import org.mdcconcepts.kidsi.customitems.CircularImageView;
 import org.mdcconcepts.kidsi.customitems.CompleteAsyncTask;
 import org.mdcconcepts.kidsi.customitems.CustomTextView;
 import org.mdcconcepts.kidsi.customitems.RateTeacherDialog;
@@ -47,7 +51,6 @@ public class TeacherInfoFragment extends Fragment implements View.OnClickListene
     private CustomTextView tvTeacherTotalCount;
 
 
-
     private ImageView imgCall;
     private ImageView imgEmergancyCall;
 
@@ -62,6 +65,7 @@ public class TeacherInfoFragment extends Fragment implements View.OnClickListene
 
     private Button btnRate;
     private RateTeacherDialog rateTeacherDialog;
+    private ImageView imgProfilePicture;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -80,7 +84,7 @@ public class TeacherInfoFragment extends Fragment implements View.OnClickListene
                 String[] requestParameters = new String[2];
                 requestParameters[0] = Util.TEACHER_INFO_PROFILE;
                 requestParameters[1] = getRequestParameters().toString();
-                universalAsynckTask = new UniversalAsynckTask(TeacherInfoFragment.this, "Loading", getActivity(),1);
+                universalAsynckTask = new UniversalAsynckTask(TeacherInfoFragment.this, "Loading", getActivity(), 1);
                 universalAsynckTask.execute(requestParameters);
             }
 
@@ -116,10 +120,12 @@ public class TeacherInfoFragment extends Fragment implements View.OnClickListene
         tvTeacherStatus.setText(mySharedPreferences.getTeacherStatus());
         tvTeacherName.setText(mySharedPreferences.getTeacherName());
 
-        tvTeacherTotalCount.setText("("+ mySharedPreferences.getTotalRateCount() +")");
+        tvTeacherTotalCount.setText("(" + mySharedPreferences.getTotalRateCount() + ")");
 
         ratingBar_teacher_rating.setProgress(mySharedPreferences.getTeacherRating());
-
+        Picasso.with(getActivity())
+                .load(mySharedPreferences.getTeacherProfileUrl())
+                .into(imgProfilePicture);
     }
 
     public void callNumber(String mobileNumber) {
@@ -159,12 +165,14 @@ public class TeacherInfoFragment extends Fragment implements View.OnClickListene
         imgCall = (ImageView) rootView.findViewById(R.id.teacher_profile_img_call);
         imgEmergancyCall = (ImageView) rootView.findViewById(R.id.teacher_profile_img_emergancy_call);
 
+        imgProfilePicture = (ImageView) rootView.findViewById(R.id.teacher_profile_img_profile_pic);
+
         ratingBar_teacher_rating = (RatingBar) rootView.findViewById(R.id.ratingBar_teacher_rating);
         btnRate = (Button) rootView.findViewById(R.id.teacher_profile_btn_rate);
     }
 
     @Override
-    public void onCompleteTask(JSONObject jsonObject,int flag) {
+    public void onCompleteTask(JSONObject jsonObject, int flag) {
         if (jsonObject != null) {
             Log.d("Teacher Info Fragment", jsonObject.toString());
             try {
@@ -176,6 +184,13 @@ public class TeacherInfoFragment extends Fragment implements View.OnClickListene
                     Log.d("Temp", temp.toString());
                     setMySharedPreferences();
                     setParameters();
+                    Log.d("Teacher Profile", mySharedPreferences.getTeacherProfileUrl());
+//                    Picasso.with(getActivity())
+//                            .load(mySharedPreferences.getTeacherProfileUrl())
+//                            .into(imgProfilePicture);
+//                    imgProfilePicture = (ImageView) rootView.findViewById(R.id.teacher_profile_img_profile_pic);
+//                    Picasso.with(getActivity()).load(mySharedPreferences.getParentProfileUrl())
+//                            .into(imgProfilePicture);
                 }
 
             } catch (JSONException e) {
@@ -206,7 +221,11 @@ public class TeacherInfoFragment extends Fragment implements View.OnClickListene
             mySharedPreferences.setTeacherId(temp.getString("teacher_id"));
             mySharedPreferences.setTeacherInfoStatus(true);
             mySharedPreferences.setTotalRateCount(temp.getString("rating_count"));
-        } catch (JSONException e) {
+            Log.d("Teacher Profile", temp.getString("Profile_url"));
+            mySharedPreferences.setTeacherProfileUrl(temp.getString("Profile_url"));
+
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
