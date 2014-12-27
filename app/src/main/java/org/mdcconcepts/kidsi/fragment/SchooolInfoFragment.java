@@ -227,6 +227,8 @@ public class SchooolInfoFragment extends Fragment implements CompleteAsyncTask, 
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(mySharedPreferences.getSchoolFBURL())));
                 }
 
+
+
                 break;
             case R.id.school_info_img_linkedin:
                 try{
