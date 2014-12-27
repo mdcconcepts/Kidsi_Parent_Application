@@ -1,11 +1,11 @@
 package org.mdcconcepts.kidsi.fragment;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
-import android.text.util.Linkify;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +15,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
@@ -26,6 +25,7 @@ import org.json.JSONObject;
 import org.mdcconcepts.kidsi.R;
 import org.mdcconcepts.kidsi.Util.AppSharedPreferences;
 import org.mdcconcepts.kidsi.Util.Util;
+import org.mdcconcepts.kidsi.customitems.CircularImageView;
 import org.mdcconcepts.kidsi.customitems.CompleteAsyncTask;
 import org.mdcconcepts.kidsi.customitems.ConnectionDetector;
 import org.mdcconcepts.kidsi.customitems.CustomTextView;
@@ -33,9 +33,16 @@ import org.mdcconcepts.kidsi.customitems.CustomValidator;
 import org.mdcconcepts.kidsi.customitems.InternetConnectionDialog;
 import org.mdcconcepts.kidsi.customitems.KidListAdapter;
 import org.mdcconcepts.kidsi.customitems.UniversalAsynckTask;
+import org.mdcconcepts.kidsi.customitems.UploadPicInterface;
+import org.mdcconcepts.kidsi.customitems.UploadProfilePictureTask;
 import org.mdcconcepts.kidsi.kids.KidsProfileActivity;
 
-public class ParentProfileFragment extends Fragment implements CompleteAsyncTask, AdapterView.OnItemClickListener, View.OnClickListener {
+/**
+ * Author: Pallavi Udawant
+ * This fragment displays the Parents profile.
+ * All details of the Parent and list of his kids.
+ */
+public class ParentProfileFragment extends Fragment implements CompleteAsyncTask, AdapterView.OnItemClickListener, View.OnClickListener, UploadPicInterface {
 
     public ParentProfileFragment() {
     }
@@ -72,6 +79,7 @@ public class ParentProfileFragment extends Fragment implements CompleteAsyncTask
     private EditText edtEmailId;
     private Typeface font;
     private int flag;
+    private String fileName;
 
     private String parentName;
     private String parentAddress;
@@ -80,9 +88,17 @@ public class ParentProfileFragment extends Fragment implements CompleteAsyncTask
     private String parentEmergencyNo;
     private String parentEmailId;
 
-    private ImageView imgParentprofile;
+    private CircularImageView imgParentprofile;
+    private Intent galleryIntent;
+
+    private int GET_PARENT_INFO_FLAG = 1;
+    private int GET_KID_INFO_FLAG = 2;
+
+    private int KID_DETAILS_REQUEST = 2;
+    private int OPEN_GALLERY_REQUEST = 1;
 
     InternetConnectionDialog connectionDialog;
+    UploadProfilePictureTask uploadProfilePictureTask;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -101,12 +117,14 @@ public class ParentProfileFragment extends Fragment implements CompleteAsyncTask
             setParameters();
             setFont();
             isConnected = connectionDetector.isConnectingToInternet();
+
             if (isConnected) {
 //
                 String[] requestParameters = new String[2];
                 requestParameters[0] = Util.PARENT_INFO_PROFILE;
                 requestParameters[1] = getRequestParameters().toString();
-                universalAsynckTask = new UniversalAsynckTask(ParentProfileFragment.this, "Loading", getActivity(), 1);
+
+                universalAsynckTask = new UniversalAsynckTask(ParentProfileFragment.this, "Loading", getActivity(), GET_PARENT_INFO_FLAG);
                 universalAsynckTask.execute(requestParameters);
 
             } else {
@@ -128,7 +146,6 @@ public class ParentProfileFragment extends Fragment implements CompleteAsyncTask
         tvParentEmailAddress = (CustomTextView) lvHeader.findViewById(R.id.parent_profile_textview_email_addrs);
 
 
-
         imgEdit = (ImageView) lvHeader.findViewById(R.id.parent_profile_img_edit);
         btnSave = (Button) lvHeader.findViewById(R.id.parent_profile_btn_done_edit);
         edtAddress = (EditText) lvHeader.findViewById(R.id.parent_profile_edt_addr);
@@ -136,7 +153,7 @@ public class ParentProfileFragment extends Fragment implements CompleteAsyncTask
         edtMobileNumber = (EditText) lvHeader.findViewById(R.id.parent_profile_edt_mobile_number);
         edtCompanyNumber = (EditText) lvHeader.findViewById(R.id.parent_profile_edt_company_no);
         edtEmailId = (EditText) lvHeader.findViewById(R.id.parent_profile_edt_email_addrs);
-        imgParentprofile=(ImageView)lvHeader.findViewById(R.id.parent_profile_img_profile_pic);
+        imgParentprofile = (CircularImageView) lvHeader.findViewById(R.id.parent_profile_img_profile_pic);
 
         connectionDetector = new ConnectionDetector(getActivity());
         mySharedPreferences = new AppSharedPreferences(getActivity());
@@ -148,13 +165,13 @@ public class ParentProfileFragment extends Fragment implements CompleteAsyncTask
         lvMain.setOnItemClickListener(this);
         imgEdit.setOnClickListener(this);
         btnSave.setOnClickListener(this);
+        imgParentprofile.setOnClickListener(this);
 
 
     }
 
     private void setFont() {
         btnSave.setTypeface(font);
-
         edtEmergencyNo.setTypeface(font);
         edtMobileNumber.setTypeface(font);
         edtCompanyNumber.setTypeface(font);
@@ -164,8 +181,6 @@ public class ParentProfileFragment extends Fragment implements CompleteAsyncTask
     }
 
     private void setParameters() {
-
-
         if (mySharedPreferences.getParentName() != null)
             tvParentName.setText(mySharedPreferences.getParentName());
         else
@@ -195,6 +210,49 @@ public class ParentProfileFragment extends Fragment implements CompleteAsyncTask
             tvParentEmailAddress.setText(mySharedPreferences.getParentEmailAddr());
         else
             tvParentEmailAddress.setText("Information Not Available");
+
+//        if (mySharedPreferences.getKidJsonString() != null) {
+//            try {
+//                kidsJsonArray = new JSONArray(mySharedPreferences.getKidJsonString());
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//            kidListAdapter = new KidListAdapter(getActivity(), kidsJsonArray);
+//            lvMain.setAdapter(kidListAdapter);
+//        }
+    }
+
+    @Override
+    public void onResume() {
+//
+//        isConnected = connectionDetector.isConnectingToInternet();
+//
+//        if (isConnected) {
+////
+//            String[] requestParameters = new String[2];
+//            requestParameters[0] = Util.PARENT_INFO_PROFILE;
+//            requestParameters[1] = getRequestParameters().toString();
+//
+//            universalAsynckTask = new UniversalAsynckTask(ParentProfileFragment.this, "Loading", getActivity(), GET_PARENT_INFO_FLAG);
+//            universalAsynckTask.execute(requestParameters);
+//
+//        } else {
+//            connectionDialog.show();
+//        }
+//        lvMain.invalidate();
+        super.onResume();
+    }
+
+    private void setParentProfilePic() {
+        try {
+            Picasso.with(getActivity()).load(mySharedPreferences.getParentProfileUrl())
+//                    .resize(100, 100)
+                    .error(R.drawable.parent_pic)
+                    .into(imgParentprofile);
+        } catch (Exception e) {
+            imgParentprofile.setImageResource(R.drawable.parent_pic);
+            e.printStackTrace();
+        }
     }
 
     private void setMySharedPreferences(JSONObject temp) {
@@ -208,7 +266,10 @@ public class ParentProfileFragment extends Fragment implements CompleteAsyncTask
             mySharedPreferences.setParentInfoStatus(true);
             mySharedPreferences.setParentProfileUrl(temp.getString("Profile_image"));
 
-            Picasso.with(getActivity()).load(mySharedPreferences.getParentProfileUrl()).into(imgParentprofile);
+            mySharedPreferences.setKidJsonString(temp.getJSONArray("Child_Info").toString());
+            setParentProfilePic();
+
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -233,6 +294,7 @@ public class ParentProfileFragment extends Fragment implements CompleteAsyncTask
 
         switch (flag) {
             case 1:
+                // This code will be executed after getting the Parent Info
                 if (jsonObject != null) {
                     Log.d("Parent Info Fragment", jsonObject.toString());
                     try {
@@ -243,8 +305,9 @@ public class ParentProfileFragment extends Fragment implements CompleteAsyncTask
                             temp = jsonObject.getJSONObject("parent_info");
                             kidsJsonArray = temp.getJSONArray("Child_Info");
 
-//                    String i=String.valueOf(kidsJsonArray.length());
+//                       String i=String.valueOf(kidsJsonArray.length());
                             Log.d("Temp", kidsJsonArray.toString());
+
 
                             setMySharedPreferences(temp);
                             setParameters();
@@ -275,12 +338,13 @@ public class ParentProfileFragment extends Fragment implements CompleteAsyncTask
 
 
                         if (success) {
+
                             mySharedPreferences.setParentEmergancyMobileNumber(parentEmergencyNo);
                             mySharedPreferences.setParentCompanyMobileNumber(parentCompanyNo);
                             mySharedPreferences.setParentPrimaryMobileNumber(parentMobileNumber);
                             mySharedPreferences.setParentAddress(parentAddress);
                             mySharedPreferences.setParentEmailAddr(parentEmailId);
-
+//TODO save
                             setParameters();
                             imgEdit.setVisibility(View.VISIBLE);
                             btnSave.setVisibility(View.GONE);
@@ -294,12 +358,20 @@ public class ParentProfileFragment extends Fragment implements CompleteAsyncTask
                     }
                 }
                 break;
+            case 3:
+                if (jsonObject != null) {
+                    Log.d("Parent Info Fragment", jsonObject.toString());
+                }
+                break;
+
 
         }
     }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+
+        //TODO StartActivity for result
 
         intent = new Intent(getActivity(), KidsProfileActivity.class);
         try {
@@ -310,7 +382,9 @@ public class ParentProfileFragment extends Fragment implements CompleteAsyncTask
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        startActivity(intent);
+        startActivityForResult(intent, KID_DETAILS_REQUEST);
+        getActivity().overridePendingTransition(
+                R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     @Override
@@ -325,8 +399,6 @@ public class ParentProfileFragment extends Fragment implements CompleteAsyncTask
                 break;
 
             case R.id.parent_profile_btn_done_edit:
-
-
                 parentName = tvParentName.getText().toString();
                 parentAddress = edtAddress.getText().toString();
                 parentCompanyNo = edtCompanyNumber.getText().toString();
@@ -355,7 +427,7 @@ public class ParentProfileFragment extends Fragment implements CompleteAsyncTask
                         requestParameters[0] = Util.UPDATE_PARENT_INFO;
                         requestParameters[1] = getParentInfoParams().toString();
 
-                        universalAsynckTask = new UniversalAsynckTask(ParentProfileFragment.this, "Loading", getActivity(), 2);
+                        universalAsynckTask = new UniversalAsynckTask(ParentProfileFragment.this, "Loading", getActivity(), GET_KID_INFO_FLAG);
                         universalAsynckTask.execute(requestParameters);
                         break;
                     }
@@ -363,7 +435,52 @@ public class ParentProfileFragment extends Fragment implements CompleteAsyncTask
                     connectionDialog.show();
                 }
 
+            case R.id.parent_profile_img_profile_pic:
+//                Toast.makeText(getActivity(), "Image OnClick", Toast.LENGTH_LONG).show();
+                openGallery();
+                break;
+        }
+    }
 
+    /**
+     * This method is written to open the gallery
+     * setType specifies the type of file that you want to open
+     * since here we want to upload an image so we have set type to image.
+     */
+    private void openGallery() {
+
+        galleryIntent = new Intent(Intent.ACTION_PICK);
+        galleryIntent.setType("image/*");
+        startActivityForResult(galleryIntent, OPEN_GALLERY_REQUEST);
+        getActivity().overridePendingTransition(
+                R.anim.slide_in_right, R.anim.slide_out_left);
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent returnedIntent) {
+        super.onActivityResult(requestCode, resultCode, returnedIntent);
+
+        switch (requestCode) {
+            case 1:
+                //This code will be executed after opening the gallery and uploads the selected profile picture
+                if (resultCode == Activity.RESULT_OK) {
+
+                    Uri selectedImage = returnedIntent.getData();
+//                    imgParentprofile.setImageURI(selectedImage);
+                    String filePath = Util.getPath(selectedImage, getActivity());
+                    uploadProfilePictureTask = new UploadProfilePictureTask(this, getActivity());
+                    uploadProfilePictureTask.execute(filePath, mySharedPreferences.getParentId(), Util.UPDATE_PARENT_PROFILE_PIC);
+                }
+                break;
+            case 2:
+                //This code will be executed if user returns back after updating kid profile picture and updates the UI.
+                String jsonResponse = returnedIntent.getStringExtra("profile_url");
+
+                Log.d("jsonResponse", jsonResponse);
+
+
+                break;
         }
     }
 
@@ -408,5 +525,23 @@ public class ParentProfileFragment extends Fragment implements CompleteAsyncTask
         edtMobileNumber.setText(tvParentPrimaryMobNo.getText().toString());
         edtEmailId.setText(tvParentEmailAddress.getText().toString());
         edtEmergencyNo.setText(tvParentEmergancyNo.getText().toString());
+    }
+
+    @Override
+    public void onUploadComplete(JSONObject jsonObject) {
+        if (jsonObject != null) {
+            Log.d("OnComplete Upload", jsonObject.toString());
+            try {
+                if (jsonObject.getBoolean("success")) {
+                    mySharedPreferences.setParentProfileUrl(jsonObject.getString("profile_image"));
+                    setParentProfilePic();
+                } else
+                    Toast.makeText(getActivity(), "Upload failed..", Toast.LENGTH_LONG).show();
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 }

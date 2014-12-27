@@ -263,11 +263,7 @@
                 android:src="@drawable/ic_parent_profile"
                 app:border="true"
                 app:border_color="#3c3c3c"
-                app:border_width="6dp"
-                app:selector="true"
-                app:selector_color="#009d9d9d"
-                app:selector_stroke_color="#009d9d9d"
-                app:selector_stroke_width="4dp"
+                app:border_width="3dp"
                 app:shadow="true" />
 
 

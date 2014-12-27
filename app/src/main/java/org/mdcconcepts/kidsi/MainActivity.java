@@ -124,6 +124,9 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
         final ImageView view = (ImageView) findViewById(android.R.id.home);
         view.setPadding(20, 0, 0, 10);
         mySharedPreferences.setFirstRun(false);
+
+
+
     }
 
     @Override
@@ -132,10 +135,14 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
             case R.id.action_about_app:
                 intent = new Intent(MainActivity.this, AboutAppActivity.class);
                 startActivity(intent);
+                overridePendingTransition(
+                        R.anim.slide_in_right, R.anim.slide_out_left);
                 break;
             case R.id.action_privacy_policy:
                 intent = new Intent(MainActivity.this, PrivacyPolicyActivity.class);
                 startActivity(intent);
+                overridePendingTransition(
+                        R.anim.slide_in_right, R.anim.slide_out_left);
                 break;
             case R.id.action_logout:
                 exitDialogBox.show();
@@ -143,6 +150,8 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
             case R.id.action_notification_settings:
                 intent = new Intent(MainActivity.this, NotificationActivity.class);
                 startActivity(intent);
+                overridePendingTransition(
+                        R.anim.slide_in_right, R.anim.slide_out_left);
 
                 break;
         }
@@ -200,7 +209,7 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
     public boolean onPrepareOptionsMenu(Menu menu) {
         // if nav drawer is opened, hide the action items
         boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
-        menu.findItem(R.id.action_search).setVisible(true);
+//        menu.findItem(R.id.action_search).setVisible(true);
         return super.onPrepareOptionsMenu(menu);
     }
 

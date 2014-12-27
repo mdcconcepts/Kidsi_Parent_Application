@@ -70,7 +70,7 @@ public class SchooolInfoFragment extends Fragment implements CompleteAsyncTask, 
                 String[] requestParameters = new String[2];
                 requestParameters[0] = Util.SCHOOL_INFO_URL;
                 requestParameters[1] = getRequestParameters().toString();
-                universalAsynckTask = new UniversalAsynckTask(SchooolInfoFragment.this, "Loading", getActivity(),1);
+                universalAsynckTask = new UniversalAsynckTask(SchooolInfoFragment.this, "Loading", getActivity(), 1);
                 universalAsynckTask.execute(requestParameters);
             }
         } catch (Exception e) {
@@ -143,7 +143,7 @@ public class SchooolInfoFragment extends Fragment implements CompleteAsyncTask, 
     }
 
     @Override
-    public void onCompleteTask(JSONObject jsonObject,int flag) {
+    public void onCompleteTask(JSONObject jsonObject, int flag) {
 
         if (jsonObject != null) {
             Log.d("School Info Fragment", jsonObject.toString());
@@ -192,6 +192,7 @@ public class SchooolInfoFragment extends Fragment implements CompleteAsyncTask, 
         }
 
     }
+
     public void callNumber(String mobileNumber) {
 
 
@@ -201,6 +202,7 @@ public class SchooolInfoFragment extends Fragment implements CompleteAsyncTask, 
         callIntent.setData(Uri.parse("tel:" + phoneNumber));
         startActivity(callIntent);
     }
+
     @Override
     public void onClick(View view) {
 
@@ -209,22 +211,56 @@ public class SchooolInfoFragment extends Fragment implements CompleteAsyncTask, 
                 intent = new Intent(Intent.ACTION_VIEW,
                         Uri.parse(mySharedPreferences.getSchoolGPlusURL()));
                 startActivity(intent);
+                getActivity().overridePendingTransition(
+                        R.anim.slide_in_right, R.anim.slide_out_left);
                 break;
             case R.id.school_info_img_fb:
-                intent = new Intent(Intent.ACTION_VIEW,
-                        Uri.parse(mySharedPreferences.getSchoolFBURL()));
-                startActivity(intent);
+                try {
+                    String uri = "fb://page/394492800677531";
+                    intent = new Intent(Intent.ACTION_VIEW,
+                            Uri.parse(uri));
+                    Log.d("FB", mySharedPreferences.getSchoolFBURL());
+                    startActivity(intent);
+                    getActivity().overridePendingTransition(
+                            R.anim.slide_in_right, R.anim.slide_out_left);
+                } catch (Exception e) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(mySharedPreferences.getSchoolFBURL())));
+                }
+
                 break;
             case R.id.school_info_img_linkedin:
+                try{
+                    String linkedInUrl="linkedin://company/"+"";
+                }catch (Exception e)
+                {
+
+                }
                 intent = new Intent(Intent.ACTION_VIEW,
                         Uri.parse(mySharedPreferences.getSchoolLinkedInURL()));
                 startActivity(intent);
+                getActivity().overridePendingTransition(
+                        R.anim.slide_in_right, R.anim.slide_out_left);
                 break;
             case R.id.school_info_img_twitter:
-                intent = new Intent(Intent.ACTION_VIEW,
-                        Uri.parse(mySharedPreferences.getSchoolTwitterURL()));
-                startActivity(intent);
+
+                try {
+                    String twitterUrl="twitter://user?user_id="+"2291070648";
+                    intent = new Intent(Intent.ACTION_VIEW,
+                            Uri.parse(
+                                    twitterUrl));
+                    startActivity(intent);
+                    getActivity().overridePendingTransition(
+                            R.anim.slide_in_right, R.anim.slide_out_left);
+                }
+                catch (Exception e)
+                {
+                    intent = new Intent(Intent.ACTION_VIEW,
+                            Uri.parse(
+                                    mySharedPreferences.getSchoolTwitterURL()));
+                    startActivity(intent);
+                }
                 break;
+
             case R.id.school_info_img_call:
                 callNumber(tvMobileNumber.getText().toString().trim());
                 break;

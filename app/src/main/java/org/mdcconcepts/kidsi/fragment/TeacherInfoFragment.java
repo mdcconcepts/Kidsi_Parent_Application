@@ -136,6 +136,8 @@ public class TeacherInfoFragment extends Fragment implements View.OnClickListene
         String phoneNumber = mobileNumber;
         callIntent.setData(Uri.parse("tel:" + phoneNumber));
         startActivity(callIntent);
+        getActivity().overridePendingTransition(
+                R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     public JSONObject getRequestParameters() {

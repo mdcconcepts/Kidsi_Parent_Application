@@ -1,6 +1,10 @@
 package org.mdcconcepts.kidsi.Util;
 
+import android.app.Activity;
 import android.content.Context;
+import android.database.Cursor;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -26,6 +30,9 @@ public class Util {
     public static int FOOD_RATINGS=0;
     public static int SLEEP_RATINGS=0;
     public static int MILK_RATINGS=0;
+    public static  int USER_TYPE_PARENT=1;
+    public static  int USER_TYPE_KID=2;
+
 
     public static void display(Context context, String tag, String message, int type, boolean show) {
         if (type == 0 && show) {
@@ -71,4 +78,17 @@ public class Util {
     public static String FORGOT_PASSWORD="http://192.168.100.154:8080/kidsi/index.php?r=userMaster/Forgetpass";
 
     public static String UPDATE_PARENT_INFO="http://192.168.100.154:8080/kidsi/index.php?r=userMaster/Updateparentinfo";
+
+    public static String UPDATE_PARENT_PROFILE_PIC="http://192.168.100.154:8080/kidsi/index.php?r=userMaster/uploadandroidprofilepic&parent_id=";
+
+    public static String UPDATE_KID_PROFILE_PIC="http://192.168.100.154:8080/kidsi/index.php?r=userMaster/uploadandroidprofilepic&student_id=";
+
+    public static String getPath(Uri uri,Activity context) {
+        String[] projection = {MediaStore.Images.Media.DATA};
+        Cursor cursor = context.managedQuery(uri, projection, null, null, null);
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        return cursor.getString(column_index);
+    }
+
 }

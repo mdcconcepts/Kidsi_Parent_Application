@@ -649,6 +649,16 @@ public class AppSharedPreferences {
         editor.commit();
     }
 
-    String TeacherProfileUrl;
+    public String getKidJsonString() {
+        return prefs.getString("KidJsonString", null);
+    }
+
+    public void setKidJsonString(String kidJsonString) {
+        editor = prefs.edit();
+        editor.putString("KidJsonString", kidJsonString);
+        editor.commit();
+    }
+
+    String KidJsonString;
 }
 
